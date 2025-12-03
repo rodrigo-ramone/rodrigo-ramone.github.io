@@ -1,218 +1,1235 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Portfolio</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    :root {
-      --primary-color: #007bff;
-      --secondary-color: #6c63ff;
-    }
-
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      line-height: 1.6;
-      color: #333;
-    }
-
-    header {
-      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-      color: white;
-      padding: 80px 0 60px; /* 🔹 altura reduzida */
-      text-align: center;
-      clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 2.8rem;
-    }
-
-    header p {
-      font-size: 1.2rem;
-      margin-top: 10px;
-    }
-
-    .lang-buttons {
-      margin-top: 20px;
-    }
-
-    .lang-buttons button {
-      background: white;
-      color: var(--primary-color);
-      border: none;
-      padding: 8px 15px;
-      margin: 0 5px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    .skills-projects {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 40px;
-    }
-
-    .skills-column, .projects-column {
-      background-color: #f8f9fa;
-      border-radius: 10px;
-      padding: 30px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-      min-height: 700px; /* 🔹 balancear altura */
-    }
-
-    .skill-category {
-      margin-bottom: 40px; /* 🔹 mais espaço entre blocos */
-    }
-
-    .skill-category h3 {
-      margin-bottom: 15px;
-      color: var(--primary-color);
-    }
-
-    .skill-items {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .skill-item {
-      background: white;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      padding: 8px 12px;
-      font-size: 0.9rem;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .skill-item i {
-      color: var(--secondary-color);
-    }
-
-    .skill-desc {
-      margin-top: 10px;
-      font-size: 0.9rem;
-      color: #555;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Science Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --success-color: #2ecc71;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+            scroll-behavior: smooth;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--secondary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-outline {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: transparent;
+            color: var(--secondary-color);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            border: 2px solid var(--secondary-color);
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--secondary-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 15px;
+            font-size: 2.5rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background-color: var(--secondary-color);
+        }
+        
+        /* Language Toggle */
+        .language-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background-color: white;
+            border-radius: 30px;
+            padding: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+        }
+        
+        .language-btn {
+            padding: 8px 15px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            border-radius: 20px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            min-width: 100px;
+            text-align: center;
+        }
+        
+        .language-btn.active {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 20px 0 10px;
+            text-align: center;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+            position: relative;
+        }
+        
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            margin-bottom: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .header-content h1 {
+            font-size: 2.2rem;
+            margin-bottom: 8px;
+        }
+        
+        .header-content p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .nav-links {
+            display: flex;
+            justify-content: flex-end;
+            list-style: none;
+            gap: 30px;
+            padding: 0;
+            margin-top: 20px;
+        }
+        
+        .nav-links li {
+            margin: 0;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 22px;
+            transition: color 0.3s ease;
+        }
+        
+        /* Skills & Projects Side-by-Side Section */
+        #skills-projects {
+            background-color: white;
+        }
+        
+        .skills-projects-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+        
+        .skills-column, .projects-column {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            min-height: 1100px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .skills-content, .projects-content {
+            flex: 1;
+        }
+        
+        .column-title {
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+        }
+        
+        .column-title i {
+            margin-right: 10px;
+            color: var(--secondary-color);
+        }
+        
+        /* Skills Styles */
+        .skill-category {
+            margin-bottom: 30px;
+        }
+        
+        .skill-category h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .skill-category h3 i {
+            margin-right: 10px;
+            color: var(--secondary-color);
+        }
+        
+        .skill-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .skill-item {
+            background-color: white;
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            border: 1px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+        
+        .skill-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .skill-item i {
+            margin-right: 8px;
+            color: var(--secondary-color);
+        }
+        
+        .skill-benefits {
+            background-color: #e8f4fc;
+            border-left: 4px solid var(--secondary-color);
+            padding: 12px 15px;
+            margin: 10px 0 20px;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .skill-benefits h4 {
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .skill-benefits ul {
+            padding-left: 20px;
+            font-size: 0.85rem;
+        }
+        
+        .skill-benefits li {
+            margin-bottom: 3px;
+        }
+        
+        /* Projects Styles */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+        
+        .project-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .project-img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+        
+        .project-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .project-content h3 {
+            margin-bottom: 10px;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+        
+        .project-content p {
+            margin-bottom: 15px;
+            flex-grow: 1;
+            font-size: 0.95rem;
+        }
+        
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 10px 0;
+        }
+        
+        .project-tag {
+            background-color: var(--light-color);
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            color: var(--dark-color);
+        }
+        
+        .project-benefits {
+            background-color: #e8f4fc;
+            border-left: 4px solid var(--secondary-color);
+            padding: 12px 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .project-benefits h4 {
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .project-benefits ul {
+            padding-left: 20px;
+            font-size: 0.85rem;
+        }
+        
+        .project-benefits li {
+            margin-bottom: 3px;
+        }
+        
+        /* More Projects Button */
+        .more-projects {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        /* About Section */
+        #about {
+            background-color: #f0f5f9;
+            padding: 60px 0;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h2 {
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        /* Contact Section */
+        #contact {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        #contact .section-title {
+            color: white;
+        }
+        
+        #contact .section-title::after {
+            background-color: white;
+        }
+        
+        .contact-container {
+            display: flex;
+            gap: 40px;
+        }
+        
+        .contact-info {
+            flex: 1;
+        }
+        
+        .contact-info h3 {
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .contact-details {
+            list-style: none;
+        }
+        
+        .contact-details li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-details i {
+            margin-right: 15px;
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            width: 25px;
+        }
+        
+        .contact-form {
+            flex: 1;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: white;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #1a252f;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary-color);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .skills-projects-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .skills-column, .projects-column {
+                padding: 25px;
+                min-height: auto;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content h1 {
+                font-size: 2rem;
+            }
+            
+            .header-content p {
+                font-size: 1.1rem;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .contact-container {
+                flex-direction: column;
+            }
+            
+            .nav-links {
+                justify-content: center;
+                margin-top: 15px;
+                flex-wrap: wrap;
+            }
+            
+            .nav-links li {
+                margin: 5px 10px;
+            }
+            
+            .language-toggle {
+                top: 10px;
+                right: 10px;
+            }
+            
+            .language-btn {
+                min-width: 80px;
+                padding: 6px 10px;
+                font-size: 0.9rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .skills-projects-container {
+                gap: 30px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <!-- Header -->
-  <header>
-    <h1 class="lang-en">John Doe</h1>
-    <h1 class="lang-pt" style="display:none;">João da Silva</h1>
-
-    <p class="lang-en">Data Scientist & Analyst</p>
-    <p class="lang-pt" style="display:none;">Cientista de Dados & Analista</p>
-
-    <!-- 🔹 botões multilíngues -->
-    <div class="lang-buttons">
-      <button id="btn-en">English</button>
-      <button id="btn-pt">Portuguese</button>
-    </div>
-  </header>
-
-  <!-- Skills + Projects -->
-  <section class="skills-projects">
-    <!-- Skills -->
-    <div class="skills-column">
-      <h2 class="lang-en">Technical Skills</h2>
-      <h2 class="lang-pt" style="display:none;">Competências Técnicas</h2>
-
-      <div class="skill-category">
-        <h3 class="lang-en">Programming & Data</h3>
-        <h3 class="lang-pt" style="display:none;">Programação & Dados</h3>
-        <div class="skill-items">
-          <div class="skill-item"><i class="fab fa-python"></i> Python</div>
-          <div class="skill-item"><i class="fas fa-database"></i> SQL</div>
-          <div class="skill-item"><i class="fab fa-r-project"></i> R</div>
-          <div class="skill-item">Pandas/Numpy</div>
-          <div class="skill-item">Scikit-learn</div>
-          <div class="skill-item">TensorFlow</div>
-        </div>
-        <p class="skill-desc lang-en">Building ETL pipelines, predictive models, and automating data workflows.</p>
-        <p class="skill-desc lang-pt" style="display:none;">Construção de pipelines ETL, modelos preditivos e automação de fluxos de dados.</p>
-      </div>
-
-      <div class="skill-category">
-        <h3 class="lang-en">Data Visualization</h3>
-        <h3 class="lang-pt" style="display:none;">Visualização de Dados</h3>
-        <div class="skill-items">
-          <div class="skill-item"><i class="fas fa-chart-bar"></i> Power BI</div>
-          <div class="skill-item"><i class="fas fa-chart-pie"></i> Excel</div>
-          <div class="skill-item"><i class="fas fa-chart-line"></i> Google Sheets</div>
-          <div class="skill-item"><i class="fas fa-chart-area"></i> Matplotlib/Seaborn</div>
-        </div>
-        <p class="skill-desc lang-en">Creating dashboards, reports, and visual insights for decision-making.</p>
-        <p class="skill-desc lang-pt" style="display:none;">Criação de dashboards, relatórios e insights visuais para tomada de decisão.</p>
-      </div>
-
-      <div class="skill-category">
-        <h3 class="lang-en">Tools & Platforms</h3>
-        <h3 class="lang-pt" style="display:none;">Ferramentas & Plataformas</h3>
-        <div class="skill-items">
-          <div class="skill-item"><i class="fas fa-code"></i> VS Code</div>
-          <div class="skill-item"><i class="fas fa-laptop-code"></i> Google Colab</div>
-          <div class="skill-item"><i class="fab fa-github"></i> GitHub</div>
-        </div>
-        <p class="skill-desc lang-en">Version control, cloud notebooks, and collaborative development.</p>
-        <p class="skill-desc lang-pt" style="display:none;">Controle de versão, notebooks em nuvem e desenvolvimento colaborativo.</p>
-      </div>
+    <!-- Language Toggle -->
+    <div class="language-toggle">
+        <button class="language-btn active" id="en-btn">English</button>
+        <button class="language-btn" id="pt-btn">Português</button>
     </div>
 
-    <!-- Projects -->
-    <div class="projects-column">
-      <h2 class="lang-en">Projects</h2>
-      <h2 class="lang-pt" style="display:none;">Projetos</h2>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Profile Photo" class="profile-img">
+            <div class="header-content">
+                <h1 class="lang-en">John Doe</h1>
+                <h1 class="lang-pt" style="display: none;">João Silva</h1>
+                <p class="lang-en">Data Scientist & Analyst</p>
+                <p class="lang-pt" style="display: none;">Cientista de Dados e Analista</p>
+            </div>
+        </div>
+    </header>
 
-      <div class="project">
-        <h3 class="lang-en">Instagram Analytics Tracker</h3>
-        <h3 class="lang-pt" style="display:none;">Rastreador de Analytics do Instagram</h3>
-        <p class="lang-en">Built a system to collect Instagram post metrics and analyze hashtag performance.</p>
-        <p class="lang-pt" style="display:none;">Construí um sistema para coletar métricas de postagens do Instagram e analisar a performance de hashtags.</p>
-        <img src="project1.png" alt="Project 1 Screenshot">
-      </div>
+    <!-- Skills & Projects Side-by-Side Section -->
+    <section id="skills-projects">
+        <!-- Navigation Menu -->
+        <div class="container">
+            <ul class="nav-links">
+                <li><a href="#skills-projects" class="lang-en">Skills & Projects</a><a href="#skills-projects" class="lang-pt" style="display: none;">Habilidades & Projetos</a></li>
+                <li><a href="#about" class="lang-en">About</a><a href="#about" class="lang-pt" style="display: none;">Sobre</a></li>
+                <li><a href="#contact" class="lang-en">Contact</a><a href="#contact" class="lang-pt" style="display: none;">Contato</a></li>
+            </ul>
+            
+            <h2 class="section-title lang-en">Skills & Projects</h2>
+            <h2 class="section-title lang-pt" style="display: none;">Habilidades & Projetos</h2>
+            
+            <div class="skills-projects-container">
+                <!-- Skills Column -->
+                <div class="skills-column">
+                    <div class="skills-content">
+                        <h3 class="column-title"><i class="fas fa-tools"></i> <span class="lang-en">Technical Skills</span><span class="lang-pt" style="display: none;">Habilidades Técnicas</span></h3>
+                        
+                        <div class="skill-category">
+                            <h3><i class="fab fa-python"></i> <span class="lang-en">Programming & Data Analysis</span><span class="lang-pt" style="display: none;">Programação & Análise de Dados</span></h3>
+                            <div class="skill-items">
+                                <div class="skill-item"><i class="fab fa-python"></i> Python</div>
+                                <div class="skill-item"><i class="fas fa-database"></i> SQL</div>
+                                <div class="skill-item"><i class="fab fa-r-project"></i> R</div>
+                                <div class="skill-item">Pandas/Numpy</div>
+                                <div class="skill-item">Scikit-learn</div>
+                                <div class="skill-item">TensorFlow</div>
+                            </div>
+                            <div class="skill-benefits">
+                                <h4 class="lang-en">Business Applications:</h4>
+                                <h4 class="lang-pt" style="display: none;">Aplicações Empresariais:</h4>
+                                <ul class="lang-en">
+                                    <li>Automated data processing and cleaning for efficiency</li>
+                                    <li>Predictive modeling for business forecasting</li>
+                                    <li>Statistical analysis for data-driven decision making</li>
+                                    <li>Machine learning implementation for process optimization</li>
+                                </ul>
+                                <ul class="lang-pt" style="display: none;">
+                                    <li>Processamento e limpeza de dados automatizados para eficiência</li>
+                                    <li>Modelagem preditiva para previsão de negócios</li>
+                                    <li>Análise estatística para tomada de decisão baseada em dados</li>
+                                    <li>Implementação de aprendizado de máquina para otimização de processos</li>
+                                </ul>
+                            </div>
+                            <div class="skill-benefits">
+                                <h4 class="lang-en">Some of the Benefits are:</h4>
+                                <h4 class="lang-pt" style="display: none;">Alguns dos Benefícios são:</h4>
+                                <ul class="lang-en">
+                                    <li>Find out best trending non-saturated topics for Instagram Reels to gain followers</li>
+                                    <li>Know ahead of time which products might sell more and less in a specific month or season</li>
+                                    <li>Optimize sales combined with discount so that you profit more</li>
+                                    <li>Discover best current topics to grow a youtube channel</li>
+                                    <li>And much more!</li>
+                                </ul>
+                                <ul class="lang-pt" style="display: none;">
+                                    <li>Descubra tópicos em alta e não saturados para Reels no Instagram para ganho de seguidores</li>
+                                    <li>Saiba com antecedência quais produtos devem vender mais e menos em determinado mês ou estação</li>
+                                    <li>Otimize vendas combinadas com desconto para você lucrar mais</li>
+                                    <li>Descubra os melhores tópicos atuais para crescer seu canal no youtube</li>
+                                    <li>E muito mais!</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-category">
+                            <h3><i class="fas fa-database"></i> <span class="lang-en">Systemic Thinking</span><span class="lang-pt" style="display: none;">Pensamento Sistêmico</span></h3>
+                            <div class="skill-items">
+                                <div class="skill-item">Improved problem-solving</div>
+                                <div class="skill-item">Holistic ApproachB</div>
+                                <div class="skill-item">Find root causes</div>
+                                <div class="skill-item">Interconnectedness</div>
+                            </div>
+                            <div class="skill-benefits">
+                                <h4 class="lang-en">Client Value:</h4>
+                                <h4 class="lang-pt" style="display: none;">Valor para Clientes:</h4>
+                                <ul class="lang-en">
+                                    <li>More efficient solutions</li>
+                                    <li>Understand linear and non-linear relationships</li>
+                                    <li>Better understanding of secondary factors power</li>
+                                    <li>Identify feedback loops that create cycles in a system</li>
+                                </ul>
+                                <ul class="lang-pt" style="display: none;">
+                                    <li>Soluções mais eficientes</li>
+                                    <li>Entenda relações lineares e não-lineares</li>
+                                    <li>Melhor compreensão do power de fatores secundários</li>
+                                    <li>Identificação de feedback loops que criam ciclos em um sistema</li>
+                                </ul>
+                            </div>
+                            <div class="skill-benefits">
+                                <h4 class="lang-en">Practical Benefits:</h4>
+                                <h4 class="lang-pt" style="display: none;">Benefícios Práticos:</h4>
+                                <ul class="lang-en">
+                                    <li>Find fundamental issues and fix them</li>
+                                    <li>Avoid superficial solutions that won't last</li>
+                                    <li>Improved decision making</li>
+                                    <li>More awareness of whole business context</li>
+                                </ul>
+                                <ul class="lang-pt" style="display: none;">
+                                    <li>Encontre problemas fundamentais e conserte eles</li>
+                                    <li>Evite soluções superficiais que não irão durar</li>
+                                    <li>Melhorias na tomada de decisão</li>
+                                    <li>Mais consciência sobre o contexto geral do negócio</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-category">
+                            <h3><i class="fas fa-chart-bar"></i> <span class="lang-en">Data Visualization</span><span class="lang-pt" style="display: none;">Visualização de Dados</span></h3>
+                            <div class="skill-items">
+                                <div class="skill-item">Power BI</div>
+                                <div class="skill-item">Matplotlib</div>
+                                <div class="skill-item">Seaborn</div>
+                                <div class="skill-item">Plotly</div>
+                            </div>
+                            <div class="skill-benefits">
+                                <h4 class="lang-en">Strategic Advantages:</h4>
+                                <h4 class="lang-pt" style="display: none;">Vantagens Estratégicas:</h4>
+                                <ul class="lang-en">
+                                    <li>Interactive dashboards for business monitoring</li>
+                                    <li>Clear data storytelling for stakeholder communication</li>
+                                    <li>Pattern identification for strategic planning</li>
+                                    <li>Performance tracking for continuous improvement</li>
+                                </ul>
+                                <ul class="lang-pt" style="display: none;">
+                                    <li>Dashboards interativos para monitoramento de negócios</li>
+                                    <li>Narrativa clara de dados para comunicação com stakeholders</li>
+                                    <li>Identificação de padrões para planejamento estratégico</li>
+                                    <li>Acompanhamento de desempenho para melhoria contínua</li>
+                                </ul>
+                            </div>
+                            <div class="skill-benefits">
+                                <h4 class="lang-en">Visual Analytics Impact:</h4>
+                                <h4 class="lang-pt" style="display: none;">Impacto da Análise Visual:</h4>
+                                <ul class="lang-en">
+                                    <li>Enhanced decision-making through intuitive data representation</li>
+                                    <li>Faster insights with interactive exploration capabilities</li>
+                                    <li>Improved stakeholder engagement with compelling visuals</li>
+                                    <li>Cross-platform compatibility for diverse business needs</li>
+                                </ul>
+                                <ul class="lang-pt" style="display: none;">
+                                    <li>Melhoria na tomada de decisão através de representação intuitiva de dados</li>
+                                    <li>Insights mais rápidos com capacidades de exploração interativa</li>
+                                    <li>Melhor engajamento de stakeholders com visuais convincentes</li>
+                                    <li>Compatibilidade multiplataforma para diversas necessidades de negócios</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-category">
+                            <h3><i class="fas fa-cloud"></i> <span class="lang-en">Tools & Platforms</span><span class="lang-pt" style="display: none;">Ferramentas & Plataformas</span></h3>
+                            <div class="skill-items">
+                                <div class="skill-item">Excel</div>
+                                <div class="skill-item">Google Sheets</div>
+                                <div class="skill-item">VS Code</div>
+                                <div class="skill-item">Jupyter</div>
+                                <div class="skill-item">Google Colab</div>
+                            </div>
+                            <div class="skill-benefits">
+                                <h4 class="lang-en">Operational Benefits:</h4>
+                                <h4 class="lang-pt" style="display: none;">Benefícios Operacionais:</h4>
+                                <ul class="lang-en">
+                                    <li>Scalable solutions for cost-effective operations</li>
+                                    <li>Well-structured data</li>
+                                    <li>Version control for collaborative development</li>
+                                    <li>Automated workflows for increased productivity</li>
+                                </ul>
+                                <ul class="lang-pt" style="display: none;">
+                                    <li>Soluções escaláveis para operações econômicas</li>
+                                    <li>Dados bem estruturados</li>
+                                    <li>Controle de versão para desenvolvimento colaborativo</li>
+                                    <li>Fluxos de trabalho automatizados para maior produtividade</li>
+                                </ul>
+                            </div>
+                            <div class="skill-benefits">
+                                <h4 class="lang-en">Development Efficiency:</h4>
+                                <h4 class="lang-pt" style="display: none;">Eficiência de Desenvolvimento:</h4>
+                                <ul class="lang-en">
+                                    <li>Streamlined development processes with integrated tools</li>
+                                    <li>A/B and multivariate test</li>
+                                    <li>Seamless integration with existing business systems</li>
+                                    <li>Reduced time-to-market for data solutions</li>
+                                </ul>
+                                <ul class="lang-pt" style="display: none;">
+                                    <li>Processos de desenvolvimento otimizados com ferramentas integradas</li>
+                                    <li>Teste A/B e multivariado</li>
+                                    <li>Integração perfeita com sistemas empresariais existentes</li>
+                                    <li>Tempo reduzido para lançamento de soluções de dados</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Projects Column -->
+                <div class="projects-column">
+                    <div class="projects-content">
+                        <h3 class="column-title"><i class="fas fa-project-diagram"></i> <span class="lang-en">Featured Projects</span><span class="lang-pt" style="display: none;">Projetos em Destaque</span></h3>
+                        
+                        <div class="projects-grid">
+                            <!-- Project 1 - Instagram Competitor Analysis -->
+                            <div class="project-card">
+                                <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Instagram Competitor Analysis" class="project-img">
+                                <div class="project-content">
+                                    <h3 class="lang-en">Instagram Competitor Analysis</h3>
+                                    <h3 class="lang-pt" style="display: none;">Análise de competidores no Instagram</h3>
+                                    <p class="lang-en">Comprehensive analysis of Instagram competitors for best topics to increase followers.</p>
+                                    <p class="lang-pt" style="display: none;">Análise abrangente de competidores no Instagram para melhores tópicos para aumentar seguidores.</p>
+                                    
+                                    <div class="project-tags">
+                                        <span class="project-tag">Python</span>
+                                        <span class="project-tag">Pandas</span>
+                                        <span class="project-tag">Reels Analysis</span>
+                                        <span class="project-tag">Best time to post analysis</span>
+                                    </div>
+                                    
+                                    <div class="project-benefits">
+                                        <h4 class="lang-en">Benefits for you:</h4>
+                                        <h4 class="lang-pt" style="display: none;">Benefícios para você:</h4>
+                                        <ul class="lang-en">
+                                            <li>Find trending topics that are less competitive</li>
+                                            <li>Find out if regular or short videos perform better</li>
+                                            <li>Find out best time to post</li>
+                                            <li>Find out viral topics that have potential to grow followers</li>
+                                        </ul>
+                                        <ul class="lang-pt" style="display: none;">
+                                            <li>Encontre tópicos em alta que são menos competitivos</li>
+                                            <li>Descubra se vídeos regulares or shorts performam melhor</li>
+                                            <li>Descubra o melhor horário para postagem</li>
+                                            <li>Descubra tópicos que estão viralizando e tem potencial para crescimento de seguidores</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <a href="https://github.com/rodrigo-ramone/instagram_competitor_analysis" class="btn lang-en">View Details</a>
+                                    <a href="https://github.com/rodrigo-ramone/instagram_competitor_analysis" class="btn lang-pt" style="display: none;">Ver Detalhes</a>
+                                </div>
+                            </div>
+                            
+                            <!-- Project 2 - Monthly Sales Analysis -->
+                            <div class="project-card">
+                                <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Monthly Sales Analysis" class="project-img">
+                                <div class="project-content">
+                                    <h3 class="lang-en">Monthly Sales Analysis & Forecasting</h3>
+                                    <h3 class="lang-pt" style="display: none;">Análise e Previsão de Vendas Mensais</h3>
+                                    <p class="lang-en">Time series analysis and forecasting system for monthly sales data with trend identification and seasonal adjustments.</p>
+                                    <p class="lang-pt" style="display: none;">Sistema de análise de séries temporais e previsão para dados de vendas mensais com identificação de tendências e ajustes sazonais.</p>
+                                    
+                                    <div class="project-tags">
+                                        <span class="project-tag">Time Series</span>
+                                        <span class="project-tag">Linear Regression and Seasonal decomposition</span>
+                                        <span class="project-tag">Sales forecasting</span>
+                                        <span class="project-tag">Sales Analytics</span>
+                                    </div>
+                                    
+                                    <div class="project-benefits">
+                                        <h4 class="lang-en">Business Impact:</h4>
+                                        <h4 class="lang-pt" style="display: none;">Impacto nos Negócios:</h4>
+                                        <ul class="lang-en">
+                                            <li>Improvement in inventory management efficiency</li>
+                                            <li>Accurate sales forecasts with at least 80% precision</li>
+                                            <li>Identification of seasonal trends and patterns</li>
+                                            <li>Data-driven decision making for sales strategies</li>
+                                        </ul>
+                                        <ul class="lang-pt" style="display: none;">
+                                            <li>Melhoria na eficiência de gestão de estoque</li>
+                                            <li>Previsões de vendas precisas com ao menos 80% de precisão</li>
+                                            <li>Identificação de tendências e padrões sazonais</li>
+                                            <li>Tomada de decisão baseada em dados para estratégias de vendas</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <a href="https://github.com/rodrigo-ramone/coffee_shop_analysis/tree/main" class="btn lang-en">View Details</a>
+                                    <a href="https://github.com/rodrigo-ramone/coffee_shop_analysis/tree/main" class="btn lang-pt" style="display: none;">Ver Detalhes</a>
+                                </div>
+                            </div>
+                            
+                            <!-- Project 3 - Regional sales and discount analysis -->
+                            <div class="project-card">
+                                <img src="https://images.unsplash.com/photo-1564429238817-393bd4286b2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Regional sales and discount analysis" class="project-img">
+                                <div class="project-content">
+                                    <h3 class="lang-en">Regional sales and discount analysis</h3>
+                                    <h3 class="lang-pt" style="display: none;">Análise de desconto e vendas regionais</h3>
+                                    <p class="lang-en">Detailed statistical analysis of how sales vary with discount given, product category and region.</p>
+                                    <p class="lang-pt" style="display: none;">Análise estatística detahada de como vendas varia com desconto dato, categoria do produto e região.</p>
+                                    
+                                    <div class="project-tags">
+                                        <span class="project-tag">Random Forest</span>
+                                        <span class="project-tag">Partial dependency analysis</span>
+                                        <span class="project-tag">Python</span>
+                                        <span class="project-tag">Marketing Analytics</span>
+                                    </div>
+                                    
+                                    <div class="project-benefits">
+                                        <h4 class="lang-en">Marketing Results:</h4>
+                                        <h4 class="lang-pt" style="display: none;">Resultados de Marketing:</h4>
+                                        <ul class="lang-en">
+                                            <li>Increase conversion rates without loss</li>
+                                            <li>Personalized marketing for customers</li>
+                                            <li>Reduced marketing costs through better targeting</li>
+                                            <li>Improved customer retention and loyalty</li>
+                                        </ul>
+                                        <ul class="lang-pt" style="display: none;">
+                                            <li>Aumento nas taxas de conversão de campanhas</li>
+                                            <li>Marketing personalizado para os clientes</li>
+                                            <li>Custos de marketing reduzidos através de melhor direcionamento</li>
+                                            <li>Melhoria na retenção e fidelidade de clientes</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <a href="https://github.com/rodrigo-ramone/analise_superstore" class="btn lang-en">View Details</a>
+                                    <a href="https://github.com/rodrigo-ramone/analise_superstore" class="btn lang-pt" style="display: none;">Ver Detalhes</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- More Projects Button -->
+                        <div class="more-projects">
+                            <a href="projects.html" class="btn-outline lang-en">
+                                <i class="fas fa-arrow-right"></i> View More Projects
+                            </a>
+                            <a href="projects.html" class="btn-outline lang-pt" style="display: none;">
+                                <i class="fas fa-arrow-right"></i> Ver Mais Projetos
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Services Comparison Table -->
+<section id="services-comparison" style="background-color: #f0f5f9; padding: 80px 0;">
+    <div class="container">
+        <h2 class="section-title lang-en">Where Human Expertise Outperforms AI</h2>
+        <h2 class="section-title lang-pt" style="display: none;">Onde a Expertise Humana Supera a IA</h2>
+        
+        <p class="lang-en" style="text-align: center; margin-bottom: 40px; max-width: 800px; margin-left: auto; margin-right: auto; color: var(--primary-color);">
+            AI tools are powerful assistants, but they lack the strategic thinking and business context that drive real results.
+        </p>
+        <p class="lang-pt" style="display: none; text-align: center; margin-bottom: 40px; max-width: 800px; margin-left: auto; margin-right: auto; color: var(--primary-color);">
+            Ferramentas de IA são assistentes poderosos, mas faltam o pensamento estratégico e contexto de negócios que geram resultados reais.
+        </p>
 
-      <div class="project">
-        <h3 class="lang-en">Predictive Lead Scoring Model</h3>
-        <h3 class="lang-pt" style="display:none;">Modelo Preditivo de Lead Scoring</h3>
-        <p class="lang-en">Machine learning model to predict lead conversion based on social media engagement.</p>
-        <p class="lang-pt" style="display:none;">Modelo de machine learning para prever conversão de leads baseado em engajamento de redes sociais.</p>
-        <img src="project2.png" alt="Project 2 Screenshot">
-      </div>
+        <div class="services-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 50px; max-width: 900px; margin-left: auto; margin-right: auto;">
+            
+            <!-- Row 1: First two boxes -->
+            <!-- Service 1: Trend Interpretation -->
+            <div class="service-card" style="background: white; border-radius: 10px; padding: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); border-top: 4px solid var(--secondary-color); height: 100%;">
+                <div class="service-icon" style="background: var(--secondary-color); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                    <i class="fas fa-chart-line" style="color: white; font-size: 1.2rem;"></i>
+                </div>
+                <h3 class="lang-en" style="color: var(--primary-color); margin-bottom: 15px;">Trend Interpretation</h3>
+                <h3 class="lang-pt" style="display: none; color: var(--primary-color); margin-bottom: 15px;">Interpretação de Tendências</h3>
+                
+                <div class="ai-limitation" style="background: #ffeaea; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
+                    <h4 class="lang-en" style="color: #d63031; margin-bottom: 8px; font-size: 0.9rem;">AI Limitation:</h4>
+                    <h4 class="lang-pt" style="display: none; color: #d63031; margin-bottom: 8px; font-size: 0.9rem;">Limitação da IA:</h4>
+                    <p class="lang-en" style="font-size: 0.9rem; margin: 0; color: #666;">Identifies patterns but can't explain the "why" behind trends</p>
+                    <p class="lang-pt" style="display: none; font-size: 0.9rem; margin: 0; color: #666;">Identifica padrões mas não explica o "porquê" por trás das tendências</p>
+                </div>
+                
+                <div class="my-service" style="background: #e8f4fc; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
+                    <h4 class="lang-en" style="color: var(--secondary-color); margin-bottom: 8px; font-size: 0.9rem;">My Service:</h4>
+                    <h4 class="lang-pt" style="display: none; color: var(--secondary-color); margin-bottom: 8px; font-size: 0.9rem;">Meu Serviço:</h4>
+                    <p class="lang-en" style="font-size: 0.9rem; margin: 0; color: #666;">Root cause analysis with business context integration</p>
+                    <p class="lang-pt" style="display: none; font-size: 0.9rem; margin: 0; color: #666;">Análise de causa raiz com integração de contexto de negócios</p>
+                </div>
+                
+                <div class="benefits" style="margin-top: 15px;">
+                    <div class="benefit" style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <i class="fas fa-check" style="color: var(--success-color); margin-right: 10px;"></i>
+                        <span class="lang-en" style="font-size: 0.9rem;">Targeted solutions to real problems</span>
+                        <span class="lang-pt" style="display: none; font-size: 0.9rem;">Soluções direcionadas a problemas reais</span>
+                    </div>
+                    <div class="benefit" style="display: flex; align-items: center;">
+                        <i class="fas fa-check" style="color: var(--success-color); margin-right: 10px;"></i>
+                        <span class="lang-en" style="font-size: 0.9rem;">Strategic advantage through deeper insights</span>
+                        <span class="lang-pt" style="display: none; font-size: 0.9rem;">Vantagem estratégica através de insights mais profundos</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service 2: Customer Segmentation -->
+            <div class="service-card" style="background: white; border-radius: 10px; padding: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); border-top: 4px solid var(--accent-color); height: 100%;">
+                <div class="service-icon" style="background: var(--accent-color); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                    <i class="fas fa-users" style="color: white; font-size: 1.2rem;"></i>
+                </div>
+                <h3 class="lang-en" style="color: var(--primary-color); margin-bottom: 15px;">Strategic Segmentation</h3>
+                <h3 class="lang-pt" style="display: none; color: var(--primary-color); margin-bottom: 15px;">Segmentação Estratégica</h3>
+                
+                <div class="ai-limitation" style="background: #ffeaea; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
+                    <h4 class="lang-en" style="color: #d63031; margin-bottom: 8px; font-size: 0.9rem;">AI Limitation:</h4>
+                    <h4 class="lang-pt" style="display: none; color: #d63031; margin-bottom: 8px; font-size: 0.9rem;">Limitação da IA:</h4>
+                    <p class="lang-en" style="font-size: 0.9rem; margin: 0; color: #666;">Creates statistical segments lacking business relevance</p>
+                    <p class="lang-pt" style="display: none; font-size: 0.9rem; margin: 0; color: #666;">Cria segmentos estatísticos sem relevância comercial</p>
+                </div>
+                
+                <div class="my-service" style="background: #e8f4fc; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
+                    <h4 class="lang-en" style="color: var(--secondary-color); margin-bottom: 8px; font-size: 0.9rem;">My Service:</h4>
+                    <h4 class="lang-pt" style="display: none; color: var(--secondary-color); margin-bottom: 8px; font-size: 0.9rem;">Meu Serviço:</h4>
+                    <p class="lang-en" style="font-size: 0.9rem; margin: 0; color: #666;">Business-hypothesis driven cohort analysis</p>
+                    <p class="lang-pt" style="display: none; font-size: 0.9rem; margin: 0; color: #666;">Análise de cohort baseada em hipóteses de negócio</p>
+                </div>
+                
+                <div class="benefits" style="margin-top: 15px;">
+                    <div class="benefit" style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <i class="fas fa-check" style="color: var(--success-color); margin-right: 10px;"></i>
+                        <span class="lang-en" style="font-size: 0.9rem;">Higher campaign conversion rates</span>
+                        <span class="lang-pt" style="display: none; font-size: 0.9rem;">Maiores taxas de conversão em campanhas</span>
+                    </div>
+                    <div class="benefit" style="display: flex; align-items: center;">
+                        <i class="fas fa-check" style="color: var(--success-color); margin-right: 10px;"></i>
+                        <span class="lang-en" style="font-size: 0.9rem;">Better resource allocation</span>
+                        <span class="lang-pt" style="display: none; font-size: 0.9rem;">Melhor alocação de recursos</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 2: Second two boxes -->
+            <!-- Service 3: Causal Analysis -->
+            <div class="service-card" style="background: white; border-radius: 10px; padding: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); border-top: 4px solid var(--success-color); height: 100%;">
+                <div class="service-icon" style="background: var(--success-color); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                    <i class="fas fa-link" style="color: white; font-size: 1.2rem;"></i>
+                </div>
+                <h3 class="lang-en" style="color: var(--primary-color); margin-bottom: 15px;">Causal Analysis</h3>
+                <h3 class="lang-pt" style="display: none; color: var(--primary-color); margin-bottom: 15px;">Análise Causal</h3>
+                
+                <div class="ai-limitation" style="background: #ffeaea; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
+                    <h4 class="lang-en" style="color: #d63031; margin-bottom: 8px; font-size: 0.9rem;">AI Limitation:</h4>
+                    <h4 class="lang-pt" style="display: none; color: #d63031; margin-bottom: 8px; font-size: 0.9rem;">Limitação da IA:</h4>
+                    <p class="lang-en" style="font-size: 0.9rem; margin: 0; color: #666;">Finds correlations but can't prove causation</p>
+                    <p class="lang-pt" style="display: none; font-size: 0.9rem; margin: 0; color: #666;">Encontra correlações mas não pode provar causalidade</p>
+                </div>
+                
+                <div class="my-service" style="background: #e8f4fc; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
+                    <h4 class="lang-en" style="color: var(--secondary-color); margin-bottom: 8px; font-size: 0.9rem;">My Service:</h4>
+                    <h4 class="lang-pt" style="display: none; color: var(--secondary-color); margin-bottom: 8px; font-size: 0.9rem;">Meu Serviço:</h4>
+                    <p class="lang-en" style="font-size: 0.9rem; margin: 0; color: #666;">Experimental design & causal inference</p>
+                    <p class="lang-pt" style="display: none; font-size: 0.9rem; margin: 0; color: #666;">Design experimental & inferência causal</p>
+                </div>
+                
+                <div class="benefits" style="margin-top: 15px;">
+                    <div class="benefit" style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <i class="fas fa-check" style="color: var(--success-color); margin-right: 10px;"></i>
+                        <span class="lang-en" style="font-size: 0.9rem;">Confident investment decisions</span>
+                        <span class="lang-pt" style="display: none; font-size: 0.9rem;">Decisões de investimento confiantes</span>
+                    </div>
+                    <div class="benefit" style="display: flex; align-items: center;">
+                        <i class="fas fa-check" style="color: var(--success-color); margin-right: 10px;"></i>
+                        <span class="lang-en" style="font-size: 0.9rem;">Elimination of wasteful spending</span>
+                        <span class="lang-pt" style="display: none; font-size: 0.9rem;">Eliminação de gastos desperdiçados</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service 4: Data Intelligence -->
+            <div class="service-card" style="background: white; border-radius: 10px; padding: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); border-top: 4px solid #9b59b6; height: 100%;">
+                <div class="service-icon" style="background: #9b59b6; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+                    <i class="fas fa-database" style="color: white; font-size: 1.2rem;"></i>
+                </div>
+                <h3 class="lang-en" style="color: var(--primary-color); margin-bottom: 15px;">Data Intelligence</h3>
+                <h3 class="lang-pt" style="display: none; color: var(--primary-color); margin-bottom: 15px;">Inteligência de Dados</h3>
+                
+                <div class="ai-limitation" style="background: #ffeaea; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
+                    <h4 class="lang-en" style="color: #d63031; margin-bottom: 8px; font-size: 0.9rem;">AI Limitation:</h4>
+                    <h4 class="lang-pt" style="display: none; color: #d63031; margin-bottom: 8px; font-size: 0.9rem;">Limitação da IA:</h4>
+                    <p class="lang-en" style="font-size: 0.9rem; margin: 0; color: #666;">Blindly handles outliers & missing data</p>
+                    <p class="lang-pt" style="display: none; font-size: 0.9rem; margin: 0; color: #666;">Lida cegamente com outliers e dados ausentes</p>
+                </div>
+                
+                <div class="my-service" style="background: #e8f4fc; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
+                    <h4 class="lang-en" style="color: var(--secondary-color); margin-bottom: 8px; font-size: 0.9rem;">My Service:</h4>
+                    <h4 class="lang-pt" style="display: none; color: var(--secondary-color); margin-bottom: 8px; font-size: 0.9rem;">Meu Serviço:</h4>
+                    <p class="lang-en" style="font-size: 0.9rem; margin: 0; color: #666;">Context-aware data treatment & integration</p>
+                    <p class="lang-pt" style="display: none; font-size: 0.9rem; margin: 0; color: #666;">Tratamento e integração de dados com contexto</p>
+                </div>
+                
+                <div class="benefits" style="margin-top: 15px;">
+                    <div class="benefit" style="display: flex; align-items: center; margin-bottom: 10px;">
+                        <i class="fas fa-check" style="color: var(--success-color); margin-right: 10px;"></i>
+                        <span class="lang-en" style="font-size: 0.9rem;">More reliable models & insights</span>
+                        <span class="lang-pt" style="display: none; font-size: 0.9rem;">Modelos e insights mais confiáveis</span>
+                    </div>
+                    <div class="benefit" style="display: flex; align-items: center;">
+                        <i class="fas fa-check" style="color: var(--success-color); margin-right: 10px;"></i>
+                        <span class="lang-en" style="font-size: 0.9rem;">Discovery of hidden opportunities</span>
+                        <span class="lang-pt" style="display: none; font-size: 0.9rem;">Descoberta de oportunidades ocultas</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div style="text-align: center; margin-top: 50px;">
+            <a href="#contact" class="btn lang-en" style="background: var(--primary-color);">Get Human-Centric Analysis</a>
+            <a href="#contact" class="btn lang-pt" style="display: none; background: var(--primary-color);">Obter Análise Centrada no Humano</a>
+        </div>
     </div>
-  </section>
+</section>
 
-  <!-- Script para troca de idioma -->
-  <script>
-    let currentLang = 'en';
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title lang-en">About Me</h2>
+            <h2 class="section-title lang-pt" style="display: none;">Sobre Mim</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p class="lang-en">I'm a data scientist with 5 years of experience in transforming complex data into actionable insights. My expertise includes statistical analysis, machine learning, and data visualization.</p>
+                    <p class="lang-en">I hold a Master's degree in Data Science from Stanford University and have worked with various companies to solve their data challenges.</p>
+                    
+                    <p class="lang-pt" style="display: none;">Sou um cientista de dados com 5 anos de experiência em transformar dados complexos em insights acionáveis. Minha expertise inclui análise estatística, aprendizado de máquina e visualização de dados.</p>
+                    <p class="lang-pt" style="display: none;">Possuo mestrado em Ciência de Dados pela Universidade de Stanford e trabalhei com várias empresas para resolver seus desafios de dados.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    function setLanguage(lang) {
-      currentLang = lang;
-      document.querySelectorAll('.lang-en').forEach(el => el.style.display = lang === 'en' ? '' : 'none');
-      document.querySelectorAll('.lang-pt').forEach(el => el.style.display = lang === 'pt' ? '' : 'none');
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title lang-en">Get In Touch</h2>
+            <h2 class="section-title lang-pt" style="display: none;">Entre em Contato</h2>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3 class="lang-en">Contact Information</h3>
+                    <h3 class="lang-pt" style="display: none;">Informações de Contato</h3>
+                    
+                    <ul class="contact-details">
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>john.doe@example.com</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>+1 (555) 123-4567</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span class="lang-en">San Francisco, CA</span>
+                            <span class="lang-pt" style="display: none;">São Paulo, SP</span>
+                        </li>
+                    </ul>
+                    
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-medium"></i></a>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name" class="lang-en">Name</label>
+                            <label for="name" class="lang-pt" style="display: none;">Nome</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email" class="lang-en">Email</label>
+                            <label for="email" class="lang-pt" style="display: none;">E-mail</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message" class="lang-en">Message</label>
+                            <label for="message" class="lang-pt" style="display: none;">Mensagem</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn lang-en">Send Message</button>
+                        <button type="submit" class="btn lang-pt" style="display: none;">Enviar Mensagem</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
 
-      // mudar textos dos botões
-      if (lang === 'en') {
-        document.getElementById('btn-en').textContent = "English";
-        document.getElementById('btn-pt').textContent = "Portuguese";
-      } else {
-        document.getElementById('btn-en').textContent = "Inglês";
-        document.getElementById('btn-pt').textContent = "Português";
-      }
-    }
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p class="lang-en">&copy; 2023 John Doe. All rights reserved.</p>
+            <p class="lang-pt" style="display: none;">&copy; 2023 João Silva. Todos os direitos reservados.</p>
+        </div>
+    </footer>
 
-    // inicializa em inglês
-    setLanguage('en');
-
-    document.getElementById('btn-en').addEventListener('click', () => setLanguage('en'));
-    document.getElementById('btn-pt').addEventListener('click', () => setLanguage('pt'));
-  </script>
+    <!-- JavaScript for Language Toggle -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const enBtn = document.getElementById('en-btn');
+            const ptBtn = document.getElementById('pt-btn');
+            
+            // Show English content by default
+            showLanguage('en');
+            
+            // Add event listeners to buttons
+            enBtn.addEventListener('click', function() {
+                showLanguage('en');
+                setActiveButton(enBtn, ptBtn);
+                updateButtonText('en');
+            });
+            
+            ptBtn.addEventListener('click', function() {
+                showLanguage('pt');
+                setActiveButton(ptBtn, enBtn);
+                updateButtonText('pt');
+            });
+            
+            function showLanguage(lang) {
+                // Hide all language-specific elements
+                const allElements = document.querySelectorAll('.lang-en, .lang-pt');
+                allElements.forEach(el => {
+                    el.style.display = 'none';
+                });
+                
+                // Show elements for selected language
+                const langElements = document.querySelectorAll('.lang-' + lang);
+                langElements.forEach(el => {
+                    el.style.display = 'block';
+                });
+            }
+            
+            function setActiveButton(activeBtn, inactiveBtn) {
+                activeBtn.classList.add('active');
+                inactiveBtn.classList.remove('active');
+            }
+            
+            function updateButtonText(currentLang) {
+                if (currentLang === 'en') {
+                    enBtn.textContent = 'English';
+                    ptBtn.textContent = 'Portuguese';
+                } else {
+                    enBtn.textContent = 'Inglês';
+                    ptBtn.textContent = 'Português';
+                }
+            }
+        });
+    </script>
 </body>
 </html>
