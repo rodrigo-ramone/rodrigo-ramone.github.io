@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>More Projects | Data Science Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles - Consistent with main page */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --success-color: #2ecc71;
+            --gray-color: #95a5a6;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+            scroll-behavior: smooth;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            padding: 60px 0;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--secondary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-outline {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: transparent;
+            color: var(--secondary-color);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            border: 2px solid var(--secondary-color);
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--secondary-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 15px;
+            font-size: 2.5rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background-color: var(--secondary-color);
+        }
+        
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 30px 0 20px;
+            text-align: center;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+            position: relative;
+        }
+        
+        .back-link {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .back-link:hover {
+            transform: translateX(-5px);
+            color: var(--light-color);
+        }
+        
+        .back-link i {
+            margin-right: 8px;
+        }
+        
+        .header-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .header-content p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+        
+        /* Language Toggle */
+        .language-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background-color: white;
+            border-radius: 30px;
+            padding: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+        }
+        
+        .language-btn {
+            padding: 8px 15px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            border-radius: 20px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            min-width: 100px;
+            text-align: center;
+        }
+        
+        .language-btn.active {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        /* Projects Grid */
+        .projects-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 60px;
+        }
+        
+        .project-item {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .project-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+        
+        .project-header {
+            padding: 40px 40px 20px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .project-number {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .project-header h2 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+        
+        .project-header p {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+        
+        .project-image {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
+        
+        .project-content {
+            padding: 40px;
+        }
+        
+        .client-call {
+            background-color: #e8f4fc;
+            border-left: 5px solid var(--secondary-color);
+            padding: 25px;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .client-call h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .client-call h3 i {
+            margin-right: 10px;
+            color: var(--secondary-color);
+        }
+        
+        .client-call p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        
+        .project-description {
+            margin-bottom: 30px;
+        }
+        
+        .project-description h4 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .project-description h4 i {
+            margin-right: 10px;
+            color: var(--secondary-color);
+        }
+        
+        .project-description p {
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+        
+        .project-features {
+            background-color: #f9f9f9;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .project-features h4 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .project-features h4 i {
+            margin-right: 10px;
+            color: var(--success-color);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+        
+        .feature-item i {
+            color: var(--secondary-color);
+            margin-right: 10px;
+            margin-top: 3px;
+        }
+        
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .project-tag {
+            background-color: var(--light-color);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--dark-color);
+            font-weight: 500;
+        }
+        
+        .project-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #1a252f;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary-color);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content h1 {
+                font-size: 2rem;
+            }
+            
+            .header-content p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .project-header, .project-content {
+                padding: 30px 25px;
+            }
+            
+            .project-image {
+                height: 250px;
+            }
+            
+            .project-actions {
+                flex-direction: column;
+            }
+            
+            .project-actions .btn {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .language-toggle {
+                top: 10px;
+                right: 10px;
+            }
+            
+            .language-btn {
+                min-width: 80px;
+                padding: 6px 10px;
+                font-size: 0.9rem;
+            }
+            
+            .back-link {
+                top: 20px;
+                left: 20px;
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .project-header, .project-content {
+                padding: 25px 20px;
+            }
+            
+            .project-header h2 {
+                font-size: 1.5rem;
+            }
+            
+            .client-call h3 {
+                font-size: 1.2rem;
+            }
+            
+            .project-description h4, .project-features h4 {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Language Toggle -->
+    <div class="language-toggle">
+        <button class="language-btn active" id="en-btn">English</button>
+        <button class="language-btn" id="pt-btn">Português</button>
+    </div>
+
+    <!-- Header Section -->
+    <header>
+        <a href="hopefullythelast4f_buttonmoreprojects_new.html" class="back-link">
+            <i class="fas fa-arrow-left"></i>
+            <span class="lang-en">Back to Portfolio</span>
+            <span class="lang-pt" style="display: none;">Voltar para o Portfólio</span>
+        </a>
+        <div class="container">
+            <div class="header-content">
+                <h1 class="lang-en">More Projects</h1>
+                <h1 class="lang-pt" style="display: none;">Mais Projetos</h1>
+                <p class="lang-en">Explore additional data science projects and discover how they can solve your business challenges</p>
+                <p class="lang-pt" style="display: none;">Explore projetos adicionais de ciência de dados e descubra como eles podem resolver seus desafios de negócios</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <div class="projects-container">
+                
+                <!-- Project 1 -->
+                <div class="project-item">
+                    <div class="project-header">
+                        <div class="project-number">1</div>
+                        <h2 class="lang-en">Instagram hashtag performance analysis</h2>
+                        <h2 class="lang-pt" style="display: none;">Análise de performance no Instagram</h2>
+                        <p class="lang-en">Identification of best hashtags to use and grow Instagram profile</p>
+                        <p class="lang-pt" style="display: none;">Identificação das melhores hashtags para usar e crescer perfil no Instagram</p>
+                    </div>
+                    
+                    <img src="https://images.unsplash.com/photo-1649006865582-7267627f500c?q=80&w=1461&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Instagram performance analysis" class="project-image">
+                    
+                    <div class="project-content">
+                        <div class="client-call">
+                            <h3><i class="fas fa-exclamation-circle"></i> 
+                                <span class="lang-en">Are you tired of putting so much effort and spending so much time in creating and posting content on Instagram and not converting as many people into followers as you were expecting?</span>
+                                <span class="lang-pt" style="display: none;">Você está cansado(a) de colocar tanto esforço e gastar tanto tempo em criar e postar conteúdo no Instagram e não converter usuários em seguidores o tanto quanto você esperava?</span>
+                            </h3>
+                            <p class="lang-en">What you need is a <strong>Instagram hashtag performance analysis</strong> that not only helps you reach a larger audience interested in the kind of content you make but also provides actionable insights to retain them as active followers. Stop guessing what hashtags are more efficient to reach the right audience and start implementing data-driven strategies that work.</p>
+                            <p class="lang-pt" style="display: none;">O que você precisa é uma <strong>Análise de performance de hashtag no Instagram</strong> que não apenas te ajuda a alcançar um maior público interessado no tipo de conteúdo que você cria, mas também te proporciona insights acionáveis para você rete-los como seguidores ativos. Pare de adivinhar quais hashtags são mais eficientes em alcançar o público certo e comece a implementar estratégias baseadas em dados que funcionam.</p>
+                        </div>
+                        
+                        <div class="project-description">
+                            <h4><i class="fas fa-info-circle"></i> 
+                                <span class="lang-en">About This Project</span>
+                                <span class="lang-pt" style="display: none;">Sobre Este Projeto</span>
+                            </h4>
+                            <p class="lang-en">This project focus on understanding how the use of hashtags help digital influencers increase followers. The analysis goes beyond simple 'what hashtags are more associated with gaining more followers' and gets deep into the potential of hashtags that overall had a worse performance but taken into account the frequency they were used and impressions receive, if allowed a chance, they could outperform those that had the best performance</p>
+                            <p class="lang-en">Hashtags are one of the most important ways to reach the right audience when posting Reels on Instagram. This way, it is important to optimize hashtag usage in order to increase gaining follower efficiency.</p>
+                            
+                            <p class="lang-pt" style="display: none;">Este projeto foca em entender como o uso de hashtags ajuda influenciadores digitais a aumentar seus seguidores. A análise vai além de simplesmente identificar "quais hashtags estão mais associadas ao ganho de seguidores" e aprofunda o potencial de hashtags que, no geral, tiveram um desempenho pior, mas que — levando em conta a frequência com que foram usadas e as impressões que receberam — poderiam superar aquelas com melhor desempenho, caso recebessem mais oportunidades de uso.</p>
+                            <p class="lang-pt" style="display: none;">As hashtags são uma das maneiras mais importantes de alcançar o público certo ao postar Reels no Instagram. Por isso, é fundamental otimizar o uso de hashtags para aumentar a eficiência no ganho de seguidores.</p>
+                        </div>
+                        
+                        <div class="project-features">
+                            <h4><i class="fas fa-star"></i> 
+                                <span class="lang-en">Key Features & Benefits</span>
+                                <span class="lang-pt" style="display: none;">Principais Recursos e Benefícios</span>
+                            </h4>
+                            <div class="features-grid">
+                                <div class="feature-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span class="lang-en">Identification of hashtags that must be avoided</span>
+                                    <span class="lang-pt" style="display: none;">Identificação de hashtags que devem ser evitadas</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span class="lang-en">Personalized follower retention strategies</span>
+                                    <span class="lang-pt" style="display: none;">Estratégias de retenção de seguidores personalizadas</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span class="lang-en">Performance analysis beyond absolute values</span>
+                                    <span class="lang-pt" style="display: none;">Análise de performance além dos valores absolutos</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span class="lang-en">Selected best hashtags to use</span>
+                                    <span class="lang-pt" style="display: none;">As melhores hashtags selecionadas para uso</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span class="lang-en">Cost-benefit analysis of follower retention efforts</span>
+                                    <span class="lang-pt" style="display: none;">Análise de custo-benefício dos esforços de retenção de seguidores</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span class="lang-en">Possibility of timeseries pattern analysis</span>
+                                    <span class="lang-pt" style="display: none;">Possiblidade de análise de padrões em séries temporais</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-tags">
+                            <span class="project-tag">Systems thinking</span>
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">Scikit-learn</span>
+                            <span class="project-tag">Hashtag Analytics</span>
+                            <span class="project-tag">Cost-benefit analysis</span>
+                            <span class="project-tag">Follower Retention Strategy</span>
+                        </div>
+                        
+                        <div class="project-actions">
+                            <a href="https://github.com/rodrigo-ramone/basic_instagram_analysis" class="btn lang-en">
+                                <i class="fab fa-github"></i> View on GitHub
+                            </a>
+                            <a href="https://github.com/rodrigo-ramone/basic_instagram_analysis" class="btn lang-pt" style="display: none;">
+                                <i class="fab fa-github"></i> Ver no GitHub
+                            </a>
+                            
+                            <a href="#contact" class="btn-outline lang-en">
+                                <i class="fas fa-envelope"></i> Inquire About This Project
+                            </a>
+                            <a href="#contact" class="btn-outline lang-pt" style="display: none;">
+                                <i class="fas fa-envelope"></i> Consultar Sobre Este Projeto
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="project-item">
+                    <div class="project-header">
+                        <div class="project-number">2</div>
+                        <h2 class="lang-en">Delivery data analysis</h2>
+                        <h2 class="lang-pt" style="display: none;">Análise de dados de entregas</h2>
+                        <p class="lang-en">Analysis to find optimal and problematic routes</p>
+                        <p class="lang-pt" style="display: none;">Análise para encontrar rotas ótimas e problemáticas</p>
+                    </div>
+                    
+                    <img src="https://plus.unsplash.com/premium_photo-1682141925554-9ff3aa9f0777?q=80&w=934&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Dynamic Pricing Analysis" class="project-image">
+                    
+                    <div class="project-content">
+                        <div class="client-call">
+                            <h3><i class="fas fa-exclamation-circle"></i> 
+                                <span class="lang-en">You have a logistic and transportation or delivery company and are tired of not knowing how to cut expenses without affecting profit growth?</span>
+                                <span class="lang-pt" style="display: none;">Você tem uma empresa de logística e transportadora ou de entregas e está cansado de não saber como cortar despesas sem afetar o crescimento do lucro?</span>
+                            </h3>
+                            <p class="lang-en">What you need is a <strong>Dynamic and detailed delivery analysis </strong> that analyzes costs of delivery, delivery route importance, vehicle performance and cost-benefit of on time deliveries considering distance and other conditions. Leave behind guesses and simplistic solutions! Start getting a fundamental awareness of how your business is doing when it comes to optimizing cost-benefit.</p>
+                            <p class="lang-pt" style="display: none;">O que você precisa é uma <strong>Análise de entrega dinâmica e detalhada</strong> que analisa os custos de entrega, a importância das rotas de entrega, performance dos veículos e custo-benefício de entregas no prazo. Deixe para trás suposições e soluções simplistas! Começe a ter uma consciência fundamental de como o seu negócio está se saindo com relação à otimização de custo-benefício.</p>
+                        </div>
+                        
+                        <div class="project-description">
+                            <h4><i class="fas fa-info-circle"></i> 
+                                <span class="lang-en">About This Project</span>
+                                <span class="lang-pt" style="display: none;">Sobre Este Projeto</span>
+                            </h4>
+                            <p class="lang-en">This project involves understanding delivery routes, which routes are: most important, similar to each other, problematic (lots of late deliveries), provide the best cost-benefit.</p>
+                            <p class="lang-en">By understanding these factors, you will be able to make a more lucid decision about which changes to make in order to increase deliveries on time, and thus customer satisfaction, and also which routes could be replaced by others that have a better cost-benefit.</p>
+                            
+                            <p class="lang-pt" style="display: none;">Este projeto envolve entender rotas de entrega e identificar quais rotas são: mais importantes, semelhantes entre si, problemáticas (com muitas entregas atrasadas) e quais oferecem o melhor custo-benefício.</p>
+                            <p class="lang-pt" style="display: none;">Ao entender esses fatores, você poderá tomar decisões mais embasadas sobre quais mudanças implementar para aumentar as entregas no prazo — e, consequentemente, a satisfação dos clientes — além de identificar quais rotas podem ser substituídas por outras que ofereçam melhor custo-benefício.</p>
+                        </div>
+                        
+                        <div class="project-features">
+                            <h4><i class="fas fa-star"></i> 
+                                <span class="lang-en">Key Features & Benefits</span>
+                                <span class="lang-pt" style="display: none;">Principais Recursos e Benefícios</span>
+                            </h4>
+                            <div class="features-grid">
+                                <div class="feature-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span class="lang-en">Route similarity network</span>
+                                    <span class="lang-pt" style="display: none;">Rede de similaridade das rotas</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span class="lang-en">Route cost and delivery status analysis</span>
+                                    <span class="lang-pt" style="display: none;">Análise do custo da rota e status de entrega</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span class="lang-en">Weather effect on delivery</span>
+                                    <span class="lang-pt" style="display: none;">Efeito do clima nas entregas</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span class="lang-en">Seasonal analysis</span>
+                                    <span class="lang-pt" style="display: none;">Análise sazonal</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span class="lang-en">Destinations with best performance</span>
+                                    <span class="lang-pt" style="display: none;">Destinos de melhor performance</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span class="lang-en">On time vs late delivery comparison</span>
+                                    <span class="lang-pt" style="display: none;">Comparação entre entregas no prazo e atrasadas</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-tags">
+                            <span class="project-tag">Seasonal analysis</span>
+                            <span class="project-tag">Network analysis</span>
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">Similarity analysis</span>
+                            <span class="project-tag">Systems thinking</span>
+                            <span class="project-tag">Vehicle delivery investigation</span>
+                        </div>
+                        
+                        <div class="project-actions">
+                            <a href="https://github.com/rodrigo-ramone/delivery_data_analysis" class="btn lang-en">
+                                <i class="fab fa-github"></i> View on GitHub
+                            </a>
+                            <a href="https://github.com/rodrigo-ramone/delivery_data_analysis" class="btn lang-pt" style="display: none;">
+                                <i class="fab fa-github"></i> Ver no GitHub
+                            </a>
+                            
+                            <a href="#contact" class="btn-outline lang-en">
+                                <i class="fas fa-envelope"></i> Inquire About This Project
+                            </a>
+                            <a href="#contact" class="btn-outline lang-pt" style="display: none;">
+                                <i class="fas fa-envelope"></i> Consultar Sobre Este Projeto
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="project-item">
+                    <div class="project-header">
+                        <div class="project-number">3</div>
+                        <h2 class="lang-en">Product Sales Demand Forecasting</h2>
+                        <h2 class="lang-pt" style="display: none;">Previsão de Demanda de produtos</h2>
+                        <p class="lang-en">Forecasting analysis to optimize inventory levels and reduce stockouts or overstock situations</p>
+                        <p class="lang-pt" style="display: none;">Análise de previsão para otimizar os níveis de estoque e reduzir situações de falta ou excesso de estoque</p>
+                    </div>
+                    
+                    <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Supply Chain Analysis" class="project-image">
+                    
+                    <div class="project-content">
+                        <div class="client-call">
+                            <h3><i class="fas fa-exclamation-circle"></i> 
+                                <span class="lang-en">Frustrated by inventory mismatches that lead to lost sales or wasted capital?</span>
+                                <span class="lang-pt" style="display: none;">Frustrado com discrepâncias de estoque que levam a vendas perdidas ou capital desperdiçado?</span>
+                            </h3>
+                            <p class="lang-en">You have just found <strong>a systems thinking analysis that will make you increase profit</strong> by predicting future demand patterns and consequently helping you prepare for products that sell more and not waste money on products that barely sell on a particular season. Stop relying on gut feelings and historical averages, and start using deep learning models that account for seasonality, promotions, market trends, and external factors.</p>
+                            <p class="lang-pt" style="display: none;">Você acaba de encontrar <strong>uma análise de pensamento sistêmico que irá fazer você aumentar seu lucro</strong> por prever padrões de demanda futura e consequentemente te ajudando a se preparar para produtos que vendem mais e não despediçar dinheiro em produtos que mal vendem durante uma estação particular. Pare de confiar em intuições e médias históricas e comece a usar modelos de aprendizado profundo que consideram sazonalidade, promoções, tendências de mercado e fatores externos.</p>
+                        </div>
+                        
+                        <div class="project-description">
+                            <h4><i class="fas fa-info-circle"></i> 
+                                <span class="lang-en">About This Project</span>
+                                <span class="lang-pt" style="display: none;">Sobre Este Projeto</span>
+                            </h4>
+                            <p class="lang-en">This project delivers a comprehensive demand forecasting solution that combines traditional time series analysis with advanced deep learning techniques. The system processes sales data, price variation, timeseries data, and any required information to generate accurate demand forecasts for multiple product categories and locations.</p>
+                            <p class="lang-en">The solution includes inventory optimization recommendations, helping businesses maintain optimal stock levels that balance service level targets with capital efficiency, reducing carrying costs while minimizing stockouts.</p>
+                            
+                            <p class="lang-pt" style="display: none;">Este projeto oferece uma solução completa de previsão de demanda que combina análise tradicional de séries temporais com técnicas avançadas de deep learning. O sistema processa dados de vendas, variações de preço, séries temporais e qualquer outra informação necessária para gerar previsões de demanda precisas para múltiplas categorias de produtos e localidades.</p>
+                            <p class="lang-pt" style="display: none;">A solução inclui recomendações de otimização de estoque, ajudando as empresas a manter níveis de estoque ideais que equilibram metas de nível de serviço com eficiência de capital, reduzindo custos de manutenção e minimizando faltas de estoque.</p>
+                        </div>
+                        
+                        <div class="project-features">
+                            <h4><i class="fas fa-star"></i> 
+                                <span class="lang-en">Key Features & Benefits</span>
+                                <span class="lang-pt" style="display: none;">Principais Recursos e Benefícios</span>
+                            </h4>
+                            <div class="features-grid">
+                                <div class="feature-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span class="lang-en">Multi-horizon forecasting (daily, weekly, monthly)</span>
+                                    <span class="lang-pt" style="display: none;">Previsão multi-horizonte (diária, semanal, mensal)</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span class="lang-en">Neural network modeling</span>
+                                    <span class="lang-pt" style="display: none;">Modelagem por rede neural</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span class="lang-en">Can account for external factors of all kinds</span>
+                                    <span class="lang-pt" style="display: none;">Pode considerar fatores externos de todos os tipos</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span class="lang-en">Inventory optimization recommendations</span>
+                                    <span class="lang-pt" style="display: none;">Recomendações de otimização de estoque</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span class="lang-en">Reduction in stockouts</span>
+                                    <span class="lang-pt" style="display: none;">Redução em faltas de estoque</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span class="lang-en">Optimization of product price for more profit</span>
+                                    <span class="lang-pt" style="display: none;">Otimização do preço dos produtos para mais lucro</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-tags">
+                            <span class="project-tag">Time Series Forecasting</span>
+                            <span class="project-tag">Inventory Optimization</span>
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">Multi-Layer Perceptron (MLP)</span>
+                            <span class="project-tag">Deep Learning</span>
+                            <span class="project-tag">Demand Planning</span>
+                        </div>
+                        
+                        <div class="project-actions">
+                            <a href="https://github.com/rodrigo-ramone/coffee_shop_analysis" class="btn lang-en">
+                                <i class="fab fa-github"></i> View on GitHub
+                            </a>
+                            <a href="https://github.com/rodrigo-ramone/coffee_shop_analysis" class="btn lang-pt" style="display: none;">
+                                <i class="fab fa-github"></i> Ver no GitHub
+                            </a>
+                            
+                            <a href="#contact" class="btn-outline lang-en">
+                                <i class="fas fa-envelope"></i> Inquire About This Project
+                            </a>
+                            <a href="#contact" class="btn-outline lang-pt" style="display: none;">
+                                <i class="fas fa-envelope"></i> Consultar Sobre Este Projeto
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                 <!-- Project 4 -->
+                <div class="project-item">
+                    <div class="project-header">
+                        <div class="project-number">4</div>
+                        <h2 class="lang-en">Customer segmentation and product sales</h2>
+                        <h2 class="lang-pt" style="display: none;">Segmentação de clientes e venda de produtos</h2>
+                        <p class="lang-en">Visual interactive analysis to find the best clients for each kind of product</p>
+                        <p class="lang-pt" style="display: none;">Análise visual e interativa para encontrar os melhores clientes para cada tipo de produto</p>
+                    </div>
+                    
+                    <img src="https://plus.unsplash.com/premium_photo-1711987269038-a3c47b00b14c?q=80&w=897&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Dynamic Pricing Analysis" class="project-image">
+                    
+                    <div class="project-content">
+                        <div class="client-call">
+                            <h3><i class="fas fa-exclamation-circle"></i> 
+                                <span class="lang-en">You have a store (of any kind) and is not sure how to optimize your sales considering customer information?</span>
+                                <span class="lang-pt" style="display: none;">Você tem uma loja (de qualquer tipo) e não tem certeza de como otimizar suas vendas considerando informações dos clientes?</span>
+                            </h3>
+                            <p class="lang-en">What you need is an <strong>Interactive and Dynamic dashboard that can provide you a compreehensive and extensive view of your business</strong> that in turn will help you make better decisions when you advertise your products or give discounts to maximize profit. It is time to leave behind singular graphics and time-consuming and confusing tables! Start having a global view of your business to understand your customers, provide them with what they need and optimize profit.</p>
+                            <p class="lang-pt" style="display: none;">O que você precisa é de um <strong>dashboard interativo e dinâmico que ofereça uma visão abrangente e completa do seu negócio</strong>, o que, por sua vez, ajudará você a tomar melhores decisões ao anunciar seus produtos ou oferecer descontos para maximizar o lucro. Chegou a hora de deixar para trás gráficos isolados e tabelas que tomam muito tempo e confusas! Passe a ter uma visão global do seu negócio para entender seus clientes, oferecer o que eles precisam e otimizar seus lucros.</p>
+                        </div>
+                        
+                        <div class="project-description">
+                            <h4><i class="fas fa-info-circle"></i> 
+                                <span class="lang-en">About This Project</span>
+                                <span class="lang-pt" style="display: none;">Sobre Este Projeto</span>
+                            </h4>
+                            <p class="lang-en">This project involves creating a dashboard that provides a compreehensive view of customers and the products they buy, all considering time and geographical information.</p>
+                            <p class="lang-en">By looking at different factors that affect sales at once, you will be able to make better decisions when it comes to advertising products, giving discounts and stock management. All to avoid unreasonable expenses and maximize sales</p>
+                            
+                            <p class="lang-pt" style="display: none;">Este projeto envolve a criação de um dashboard que oferece uma visão abrangente dos clientes e dos produtos que eles compram, considerando informações de tempo e localização geográfica.</p>
+                            <p class="lang-pt" style="display: none;">Ao analisar simultaneamente diferentes fatores que afetam as vendas, você poderá tomar decisões mais assertivas na hora de anunciar produtos, oferecer descontos e gerenciar o estoque. Tudo isso para evitar gastos desnecessários e maximizar as vendas.</p>
+                        </div>
+                        
+                        <div class="project-features">
+                            <h4><i class="fas fa-star"></i> 
+                                <span class="lang-en">Key Features & Benefits</span>
+                                <span class="lang-pt" style="display: none;">Principais Recursos e Benefícios</span>
+                            </h4>
+                            <div class="features-grid">
+                                <div class="feature-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span class="lang-en">Customer segmentation</span>
+                                    <span class="lang-pt" style="display: none;">Segmentação de clientes</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span class="lang-en">Global view of sales</span>
+                                    <span class="lang-pt" style="display: none;">Visão global das vendas</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span class="lang-en">Timeseries analysis</span>
+                                    <span class="lang-pt" style="display: none;">Análise de séries temporais</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span class="lang-en">Interactive Dashboard</span>
+                                    <span class="lang-pt" style="display: none;">Dashboard Interativo</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span class="lang-en">Easy-to-update Dashboard</span>
+                                    <span class="lang-pt" style="display: none;">Dashboard fácil de atualizar</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span class="lang-en">Less time to make better decisions</span>
+                                    <span class="lang-pt" style="display: none;">Menos tempo para tomar melhores decisões</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="project-tags">
+                            <span class="project-tag">Interactive Dashboard</span>
+                            <span class="project-tag">Microsoft Power BI</span>
+                            <span class="project-tag">Excel</span>
+                            <span class="project-tag">Customer segmentation</span>
+                            <span class="project-tag">Systems thinking</span>
+                            <span class="project-tag">Time optimization</span>
+                        </div>
+                        
+                        <div class="project-actions">
+                            <a href="https://github.com/rodrigo-ramone/analise_vendas_pet_store" class="btn lang-en">
+                                <i class="fab fa-github"></i> View on GitHub
+                            </a>
+                            <a href="https://github.com/rodrigo-ramone/analise_vendas_pet_store" class="btn lang-pt" style="display: none;">
+                                <i class="fab fa-github"></i> Ver no GitHub
+                            </a>
+                            
+                            <a href="#contact" class="btn-outline lang-en">
+                                <i class="fas fa-envelope"></i> Inquire About This Project
+                            </a>
+                            <a href="#contact" class="btn-outline lang-pt" style="display: none;">
+                                <i class="fas fa-envelope"></i> Consultar Sobre Este Projeto
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            
+            <!-- Back to Portfolio Button -->
+            <div style="text-align: center; margin-top: 60px;">
+                <a href="https://rodrigo-ramone.github.io/" class="btn-outline lang-en">
+                    <i class="fas fa-arrow-left"></i> Back to Portfolio
+                </a>
+                <a href="https://rodrigo-ramone.github.io/" class="btn-outline lang-pt" style="display: none;">
+                    <i class="fas fa-arrow-left"></i> Voltar para o Portfólio
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p class="lang-en">&copy; 2023 Data Science Portfolio. All rights reserved.</p>
+            <p class="lang-pt" style="display: none;">&copy; 2023 Portfólio de Ciência de Dados. Todos os direitos reservados.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-medium"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Language Toggle -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const enBtn = document.getElementById('en-btn');
+            const ptBtn = document.getElementById('pt-btn');
+            
+            // Show English content by default
+            showLanguage('en');
+            
+            // Add event listeners to buttons
+            enBtn.addEventListener('click', function() {
+                showLanguage('en');
+                setActiveButton(enBtn, ptBtn);
+                updateButtonText('en');
+            });
+            
+            ptBtn.addEventListener('click', function() {
+                showLanguage('pt');
+                setActiveButton(ptBtn, enBtn);
+                updateButtonText('pt');
+            });
+            
+            function showLanguage(lang) {
+                // Hide all language-specific elements
+                const allElements = document.querySelectorAll('.lang-en, .lang-pt');
+                allElements.forEach(el => {
+                    el.style.display = 'none';
+                });
+                
+                // Show elements for selected language
+                const langElements = document.querySelectorAll('.lang-' + lang);
+                langElements.forEach(el => {
+                    el.style.display = 'block';
+                });
+            }
+            
+            function setActiveButton(activeBtn, inactiveBtn) {
+                activeBtn.classList.add('active');
+                inactiveBtn.classList.remove('active');
+            }
+            
+            function updateButtonText(currentLang) {
+                if (currentLang === 'en') {
+                    enBtn.textContent = 'English';
+                    ptBtn.textContent = 'Portuguese';
+                } else {
+                    enBtn.textContent = 'Inglês';
+                    ptBtn.textContent = 'Português';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
