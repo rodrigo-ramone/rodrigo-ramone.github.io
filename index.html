@@ -1144,28 +1144,87 @@
                 </div>
                 
                 <div class="contact-form">
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label for="name" class="lang-en">Name</label>
-                            <label for="name" class="lang-pt" style="display: none;">Nome</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email" class="lang-en">Email</label>
-                            <label for="email" class="lang-pt" style="display: none;">E-mail</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message" class="lang-en">Message</label>
-                            <label for="message" class="lang-pt" style="display: none;">Mensagem</label>
-                            <textarea id="message" name="message" required></textarea>
-                        </div>
-                        
-                        <button type="submit" class="btn lang-en">Send Message</button>
-                        <button type="submit" class="btn lang-pt" style="display: none;">Enviar Mensagem</button>
-                    </form>
+                    <form id="contactForm" action="https://formspree.io/f/xgvgpowe" method="POST">
+    
+    <div class="form-group">
+        <label for="name" class="lang-en">Full Name *</label>
+        <label for="name" class="lang-pt" style="display: none;">Nome Completo *</label>
+        <input type="text" id="name" name="name" required>
+    </div>
+
+    <div class="form-group">
+        <label for="email" class="lang-en">Email Address *</label>
+        <label for="email" class="lang-pt" style="display: none;">Endereço de E-mail *</label>
+        <input type="email" id="email" name="email" required>
+    </div>
+
+    <div class="form-group">
+        <label for="company" class="lang-en">Company Name</label>
+        <label for="company" class="lang-pt" style="display: none;">Nome da Empresa</label>
+        <input type="text" id="company" name="company">
+    </div>
+
+    <div class="form-group">
+        <label for="service" class="lang-en">Primary Interest</label>
+        <label for="service" class="lang-pt" style="display: none;">Interesse Principal</label>
+        <select id="service" name="service">
+            <option value="" class="lang-en">Select a service...</option>
+            <option value="" class="lang-pt" style="display: none;">Selecione um serviço...</option>
+            <option value="cost-reduction" class="lang-en">Cost Reduction & Waste Elimination</option>
+            <option value="cost-reduction" class="lang-pt" style="display: none;">Redução de Custos & Eliminação de Desperdícios</option>
+            <option value="growth" class="lang-en">Business Growth Acceleration</option>
+            <option value="growth" class="lang-pt" style="display: none;">Aceleração do Crescimento do Negócio</option>
+            <option value="inventory" class="lang-en">Stockout Prevention & Inventory Optimization</option>
+            <option value="inventory" class="lang-pt" style="display: none;">Prevenção de Falta de Estoque & Otimização de Inventário</option>
+            <option value="custom" class="lang-en">Custom Data Solution</option>
+            <option value="custom" class="lang-pt" style="display: none;">Solução de Dados Personalizada</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="message" class="lang-en">Your Business Challenge *</label>
+        <label for="message" class="lang-pt" style="display: none;">Seu Desafio de Negócio *</label>
+        <textarea id="message" name="message" placeholder="Briefly describe what you're trying to solve..." required></textarea>
+    </div>
+
+    <button type="submit" class="btn" style="width: 100%;">
+        <span class="lang-en"><i class="fas fa-paper-plane"></i> Send Message</span>
+        <span class="lang-pt" style="display: none;"><i class="fas fa-paper-plane"></i> Enviar Mensagem</span>
+    </button>
+</form>
+
+<!-- Success message -->
+<p id="successMessage" style="display:none; color: green; margin-top: 15px;">
+    ✔ Message sent successfully! I'll get back to you soon.
+</p>
+<p id="successMessagePT" style="display:none; color: green; margin-top: 15px;">
+    ✔ Mensagem enviada com sucesso! Responderei em breve.
+</p>
+
+<script>
+document.getElementById("contactForm").addEventListener("submit", async function(event) {
+    event.preventDefault();
+    
+    const form = event.target;
+
+    const response = await fetch(form.action, {
+        method: form.method,
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+    });
+
+    if (response.ok) {
+        form.reset();
+
+        // Show success message depending on the language currently active
+        if (document.querySelector(".lang-en").style.display !== "none") {
+            document.getElementById("successMessage").style.display = "block";
+        } else {
+            document.getElementById("successMessagePT").style.display = "block";
+        }
+    } 
+});
+</script>
                 </div>
             </div>
         </div>
@@ -1233,5 +1292,6 @@
     </script>
 </body>
 </html>
+
 
 
