@@ -1,1 +1,1212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data-Driven Business Solutions | Grow Smart, Not Hard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles - Consistent with your portfolio */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --success-color: #2ecc71;
+            --warning-color: #f39c12;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --gray-color: #95a5a6;
+            --light-bg: #f9f9f9;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: white;
+            scroll-behavior: smooth;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background-color: var(--secondary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-accent {
+            background-color: var(--accent-color);
+        }
+        
+        .btn-accent:hover {
+            background-color: #c0392b;
+        }
+        
+        .btn-success {
+            background-color: var(--success-color);
+        }
+        
+        .btn-success:hover {
+            background-color: #27ae60;
+        }
+        
+        .btn-outline {
+            display: inline-block;
+            padding: 14px 32px;
+            background-color: transparent;
+            color: var(--secondary-color);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            border: 2px solid var(--secondary-color);
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--secondary-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 15px;
+            font-size: 2.5rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background-color: var(--secondary-color);
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--gray-color);
+            max-width: 700px;
+            margin: 0 auto 50px;
+            line-height: 1.7;
+        }
+        
+        /* Language Toggle */
+        .language-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background-color: white;
+            border-radius: 30px;
+            padding: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+        }
+        
+        .language-btn {
+            padding: 8px 15px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            border-radius: 20px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            min-width: 100px;
+            text-align: center;
+        }
+        
+        .language-btn.active {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        /* Header & Hero */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 40px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nav-links {
+            display: flex;
+            justify-content: flex-start;
+            list-style: none;
+            gap: 30px;
+            padding: 0;
+            margin-bottom: 60px;
+        }
+        
+        .nav-links li {
+            margin: 0;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--light-color);
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero-content p {
+            font-size: 1.4rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-cta {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        /* Stats Section */
+        .stats-section {
+            background-color: var(--light-bg);
+            padding: 60px 0;
+            margin-top: -40px;
+            position: relative;
+            z-index: 2;
+            border-radius: 10px 10px 0 0;
+        }
+        
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+        
+        .stat-text {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+        
+        /* Services Sections */
+        .services-section {
+            background-color: white;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+        
+        .service-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 5px solid var(--secondary-color);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+        
+        .service-card.saving {
+            border-top-color: var(--success-color);
+        }
+        
+        .service-card.growth {
+            border-top-color: var(--secondary-color);
+        }
+        
+        .service-card.avoidance {
+            border-top-color: var(--accent-color);
+        }
+        
+        .service-card.other {
+            border-top-color: var(--warning-color);
+        }
+        
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            color: white;
+        }
+        
+        .service-icon.saving {
+            background-color: var(--success-color);
+        }
+        
+        .service-icon.growth {
+            background-color: var(--secondary-color);
+        }
+        
+        .service-icon.avoidance {
+            background-color: var(--accent-color);
+        }
+        
+        .service-icon.other {
+            background-color: var(--warning-color);
+        }
+        
+        .service-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        .service-card p {
+            margin-bottom: 25px;
+            color: #555;
+            flex-grow: 1;
+        }
+        
+        .service-benefits {
+            margin: 25px 0;
+            padding-left: 20px;
+        }
+        
+        .service-benefits li {
+            margin-bottom: 10px;
+            color: #555;
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .service-benefits li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+        
+        .service-benefits.saving li::before {
+            color: var(--success-color);
+        }
+        
+        .service-benefits.growth li::before {
+            color: var(--secondary-color);
+        }
+        
+        .service-benefits.avoidance li::before {
+            color: var(--accent-color);
+        }
+        
+        .service-benefits.other li::before {
+            color: var(--warning-color);
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-color), #1a252f);
+            color: white;
+            text-align: center;
+        }
+        
+        .cta-section .section-title {
+            color: white;
+        }
+        
+        .cta-section .section-title::after {
+            background-color: white;
+        }
+        
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+        
+        .cta-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        /* How It Works */
+        .process-section {
+            background-color: var(--light-bg);
+        }
+        
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .process-step {
+            text-align: center;
+            padding: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--secondary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin: 0 auto 20px;
+        }
+        
+        .process-step h4 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        /* PAYMENT BUTTONS - ADDED to ensure buttons render as styled elements */
+        .payment-buttons {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .pay-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-weight: 700;
+            text-decoration: none;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+            border: none;
+            font-size: 0.95rem;
+        }
+
+        .pay-btn.usd {
+            background: linear-gradient(90deg,#635BFF,#4A44D4);
+            box-shadow: 0 6px 18px rgba(99,91,255,0.15);
+        }
+        .pay-btn.usd:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(74,68,212,0.12); }
+
+        .pay-btn.brl {
+            background: linear-gradient(90deg,#00A650,#008f46);
+            box-shadow: 0 6px 18px rgba(0,166,80,0.12);
+        }
+        .pay-btn.brl:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,143,70,0.12); }
+
+        /* Contact Form */
+        .contact-section {
+            background-color: white;
+        }
+        
+        .contact-container {
+            display: flex;
+            gap: 50px;
+            align-items: flex-start;
+        }
+        
+        .contact-info {
+            flex: 1;
+        }
+        
+        .contact-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+        }
+        
+        .contact-details {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .contact-details li {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .contact-details i {
+            margin-right: 15px;
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            width: 25px;
+            margin-top: 5px;
+        }
+        
+        .contact-form {
+            flex: 1;
+            background-color: var(--light-bg);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--primary-color);
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--secondary-color);
+            outline: none;
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #1a252f;
+            color: white;
+            padding: 60px 0 30px;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .footer-logo span {
+            color: var(--secondary-color);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.3rem;
+            transition: color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .copyright {
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-container,
+            .process-steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .contact-container {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .stats-container,
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .hero-cta .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .service-card {
+                padding: 30px;
+            }
+            
+            .language-toggle {
+                top: 10px;
+                right: 10px;
+            }
+            
+            .language-btn {
+                min-width: 80px;
+                padding: 6px 10px;
+                font-size: 0.9rem;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+            
+            .service-card {
+                padding: 25px;
+            }
+            
+            .contact-form {
+                padding: 25px;
+            }
+        }
+
+        /* Footer .footer-content forced column for desktop too (preserved per your request) */
+        footer .footer-content {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            gap: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Language Toggle -->
+    <div class="language-toggle">
+        <button class="language-btn active" id="en-btn">English</button>
+        <button class="language-btn" id="pt-btn">Português</button>
+    </div>
+
+<!-- Header & Hero Section -->
+<header>
+    <div class="container">
+        <ul class="nav-links">
+            <li><a href="https://rodrigo-ramone.github.io/" class="lang-en">Get to Know Solutions For Your Business</a><a href="https://rodrigo-ramone.github.io/" class="lang-pt" style="display: none;">Conheça Soluções Para o Seu Negócio</a></li>
+            <li><a href="https://rodrigo-ramone.github.io/#contact" class="lang-en">Contact</a><a href="https://rodrigo-ramone.github.io/#contact" class="lang-pt" style="display: none;">Contato</a></li>
+        </ul>
+        
+        <div class="hero-content">
+            <h1 class="lang-en">Stop Guessing. Start <span style="color: #e74c3c;">Growing.</span></h1>
+            <h1 class="lang-pt" style="display: none;">Pare de Adivinhar. Comece a <span style="color: #e74c3c;">Crescer.</span></h1>
+            
+            <p class="lang-en">Data-driven solutions that cut costs, accelerate growth, and prevent revenue loss. Transform your business with actionable insights, not just pretty charts.</p>
+            <p class="lang-pt" style="display: none;">Soluções baseadas em dados que reduzem custos, aceleram o crescimento e previnem perdas de receita. Transforme seu negócio com insights acionáveis, não apenas gráficos bonitos.</p>
+            
+<div class="hero-cta">
+
+    <!-- OPEN CALENDLY IN NEW TAB -->
+    <a href="https://calendly.com/rod19-silva/30min"
+       target="_blank"
+       class="btn btn-accent lang-en">
+        Get Free Consultation
+    </a>
+
+    <a href="https://calendly.com/rod19-silva/30min"
+       target="_blank"
+       class="btn btn-accent lang-pt"
+       style="display: none;">
+        Obter Consulta Gratuita
+    </a>
+
+    <a href="https://rodrigo-ramone.github.io/" class="btn-outline lang-en">Click and have detailed information</a>
+    <a href="https://rodrigo-ramone.github.io/" class="btn-outline lang-pt" style="display: none;">Clique e tenha informações detalhadas</a>
+
+</div>
+        </div>
+    </div>
+</header>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-number">+</div>
+                    <div class="stat-text lang-en">Cost Reduction</div>
+                    <div class="stat-text lang-pt" style="display: none;">Redução de Custos</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">+</div>
+                    <div class="stat-text lang-en">Faster Growth</div>
+                    <div class="stat-text lang-pt" style="display: none;">Crescimento Mais Rápido</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">+</div>
+                    <div class="stat-text lang-en">Stockout Prevention</div>
+                    <div class="stat-text lang-pt" style="display: none;">Prevenção de Falta de Estoque</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-text lang-en">Data-Driven Decisions</div>
+                    <div class="stat-text lang-pt" style="display: none;">Decisões Baseadas em Dados</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services-section">
+        <div class="container">
+            <h2 class="section-title lang-en">Business Solutions That are More Affordable and Deliver Results</h2>
+            <h2 class="section-title lang-pt" style="display: none;">Soluções Empresariais Mais Acessíveis Que Entregam Resultados</h2>
+            
+            <p class="section-subtitle lang-en">Stop wasting resources on guesswork. Implement solutions that directly impact your bottom line.</p>
+            <p class="section-subtitle lang-pt" style="display: none;">Pare de desperdiçar recursos com suposições. Implemente soluções que impactam diretamente seu resultado final.</p>
+            
+            <div class="services-grid">
+                <!-- Service 1: Saving Money -->
+                <div class="service-card saving">
+                    <div class="service-icon saving">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <h3 class="lang-en">Cut Costs & Eliminate Waste</h3>
+                    <h3 class="lang-pt" style="display: none;">Corte Custos & Elimine Desperdícios</h3>
+                    
+                    <h4 class="lang-en">Do you own a store or any business that sell products? Perhaps you want to advertise your products online or even a website... A lot of money can be wasted in google ads, for example, right?</h4>
+                    <h4 class="lang-pt" style="display: none;">Você tem uma loja ou algum negócio que vende produtos? Talvez você queira anunciar seus produtos online ou até mesmo um site... Muito dinheiro pode ser desperdiçado no google ads, por exemplo, certo?</h4>
+                    
+                    <p class="lang-en">Here is where my services come in place. Based on systems thinking and detailed statistical analysis, you will be able to identify useless expenses and inefficient processes draining your budget. I analyze your operations to pinpoint exactly where money is being wasted and provide actionable strategies to optimize spending. In the end it is you having a higher profit and business growth</p>
+                    <p class="lang-pt" style="display: none;">É aqui que meus serviços entram em ação. Baseado no pensamento sistêmico e análise estatística detalhada, você será capaz de identifique despesas inúteis e processos ineficientes que drenam seu orçamento. Eu analiso suas operações para identificar exatamente onde o dinheiro está sendo desperdiçado e forneço estratégias acionáveis para otimizar os gastos. No fim, é você tendo maior lucro e mais crescimento do seu negócio</p>
+                    
+                    <ul class="service-benefits saving">
+                        <li class="lang-en">Identify unnecessary expenses with accuracy</li>
+                        <li class="lang-pt" style="display: none;">Identifique despesas desnecessárias com precisão</li>
+                        
+                        <li class="lang-en">Optimize marketing spend for better ROI</li>
+                        <li class="lang-pt" style="display: none;">Otimize gastos com marketing para melhor ROI</li>
+                        
+                        <li class="lang-en">Streamline operations to reduce labor costs</li>
+                        <li class="lang-pt" style="display: none;">Simplifique operações para reduzir custos de mão de obra</li>
+                        
+                        <li class="lang-en">Prevent stockouts and sales loss with predictive analysis</li>
+                        <li class="lang-pt" style="display: none;">Previna falta de estoque e perda de vendas com análise preditiva</li>
+                    </ul>
+                    
+                    <a href="https://rodrigo-ramone.github.io/" class="btn btn-success lang-en">Reduce My Costs</a>
+                    <a href="https://rodrigo-ramone.github.io/" class="btn btn-success lang-pt" style="display: none;">Reduzir Meus Custos</a>
+                </div>
+                
+                <!-- Service 2: Faster Growth -->
+                <div class="service-card growth">
+                    <div class="service-icon growth">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3 class="lang-en">Accelerate Business Growth</h3>
+                    <h3 class="lang-pt" style="display: none;">Acelere o Crescimento do Negócio</h3>
+
+                    <h4 class="lang-en">Are you a small content creator and has not seen satisfactory growth on your Instagram profile or Youtube channel or else? Or perhaps you are already a well-established creator with lots of followers but has not seen much grown in a while...</h4>
+                    <h4 class="lang-pt" style="display: none;">Você é um pequeno(a) cridor(a) de conteúdo e não tem tido crescimento satisfatório no seu perfil de Instagram ou canal de Youtube ou outro? Ou talvez você já seja um criador bem estabelecido com muitos seguidores mas que não tem tido muito crescimento já há algum tempo...</h4>
+                    
+                    <p class="lang-en">Sometimes you see your competitors growing but you don't grow, right? That is why my services exist, to help you analyse your competitors instead of ignoring them, so you can get topics for content creation that are trending at the moment and yet are not saturated. In other words, it has potential for growth and you will be able to capture part of that growth and build a more solid and sustained base of followers and subscribers.</p>
+                    <p class="lang-pt" style="display: none;">Às vezes você vê seus concorrentes crescendo, mas você não cresce, certo? É por isso que meus serviços existem: para ajudar você a analisar seus concorrentes em vez de ignorá-los, permitindo identificar tópicos de criação de conteúdo que estão em alta no momento e ainda não estão saturados. Em outras palavras, conteúdos com potencial de crescimento — e assim você poderá capturar parte desse crescimento e construir uma base de seguidores e assinantes mais sólida e sustentável.</p>
+                    
+                    <ul class="service-benefits growth">
+                        <li class="lang-en">Identify non-saturated trending topics</li>
+                        <li class="lang-pt" style="display: none;">Identifique tópicos em alta e não saturados</li>
+                        
+                        <li class="lang-en">Identify topics to avoid due to being highly competitive</li>
+                        <li class="lang-pt" style="display: none;">Identifique tópicos para evitar por serem muito competitivos</li>
+                        
+                        <li class="lang-en">In organic mode, find out which hashtags reach the most suitable people for you</li>
+                        <li class="lang-pt" style="display: none;">No modo orgânico, descubra quais hashtags atraem o público mais adequado para você</li>
+                        
+                        <li class="lang-en">Grow followers, subscribers and clientele more efficiently spending less time during the process</li> 
+                        <li class="lang-pt" style="display: none;">Aumente seguidores, inscritos e clientela mais eficientemente gastando menos tempo durante o processo</li>
+                    </ul>
+                    
+                    <a href="https://rodrigo-ramone.github.io/" class="btn lang-en">Grow My Business</a>
+                    <a href="https://rodrigo-ramone.github.io/" class="btn lang-pt" style="display: none;">Crescer Meu Negócio</a>
+                </div>
+                
+                <!-- Service 3: Avoid Stockouts & Sales Loss -->
+                <div class="service-card avoidance">
+                    <div class="service-icon avoidance">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <h3 class="lang-en">Prevent Stockouts & Sales Loss</h3>
+                    <h3 class="lang-pt" style="display: none;">Previna Falta de Estoque & Perda de Vendas</h3>
+
+                    <h4 class="lang-en">Have you experienced receiving a customer in your store (physical or virtual) and you were out of the stock of the product they were looking for? Or maybe you have experienced spending money on stocking certain products that in the end barely sell...</h4>
+                    <h4 class="lang-pt" style="display: none;">Já aconteceu de um cliente entrar na sua loja (física ou virtual) e você não ter o produto que ele procurava em estoque? Ou talvez você já tenha gasto dinheiro estocando certos produtos que, no final, quase não vendem...</h4>
+                    
+                    <p class="lang-en">Never lose another sale due to inventory issues or keep stocks that make you lose money. My forecasting models predict demand with accuracy, ensuring you have the right products at the right time while minimizing excess inventory.</p>
+                    <p class="lang-pt" style="display: none;">Nunca perca outra venda devido a problemas de estoque ou mantenha estoques que te fazem perder dinheiro. Meus modelos de previsão preveem demanda com precisão, garantindo que você tenha os produtos certos no momento certo enquanto minimiza o excesso de estoque.</p>
+                    
+                    <ul class="service-benefits avoidance">
+                        <li class="lang-en">Accurate demand forecasting</li>
+                        <li class="lang-pt" style="display: none;">Previsão de demanda com precisão</li>
+                        
+                        <li class="lang-en">Reduce inventory costs</li>
+                        <li class="lang-pt" style="display: none;">Reduza custos de estoque</li>
+                        
+                        <li class="lang-en">Eliminate stockout situations</li>
+                        <li class="lang-pt" style="display: none;">Elimine situações de falta de estoque</li>
+                        
+                        <li class="lang-en">Optimize discounts for higher profit</li>
+                        <li class="lang-pt" style="display: none;">Otimize descontos para maior lucro</li>
+                    </ul>
+                    
+                    <a href="https://rodrigo-ramone.github.io/" class="btn btn-accent lang-en">Protect My Revenue</a>
+                    <a href="https://rodrigo-ramone.github.io/" class="btn btn-accent lang-pt" style="display: none;">Proteger Minha Receita</a>
+                </div>
+                
+                <!-- Service 4: Other Solutions -->
+                <div class="service-card other">
+                    <div class="service-icon other">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3 class="lang-en">Custom Data Solutions</h3>
+                    <h3 class="lang-pt" style="display: none;">Soluções de Dados Personalizadas</h3>
+                    
+                    <p class="lang-en">Every business has unique challenges. I create tailored data solutions for marketing optimization, customer segmentation, process automation, and strategic decision-making.</p>
+                    <p class="lang-pt" style="display: none;">Cada negócio tem desafios únicos. Eu crio soluções de dados personalizadas para otimização de marketing, segmentação de clientes, automação de processos e tomada de decisão estratégica.</p>
+                    
+                    <ul class="service-benefits other">
+                        <li class="lang-en">Competitor analysis & market intelligence</li>
+                        <li class="lang-pt" style="display: none;">Análise de concorrentes & inteligência de mercado</li>
+                        
+                        <li class="lang-en">Customer behavior & retention analytics</li>
+                        <li class="lang-pt" style="display: none;">Análise de comportamento e retenção de clientes</li>
+                        
+                        <li class="lang-en">Process automation & efficiency optimization</li>
+                        <li class="lang-pt" style="display: none;">Automação de processos & otimização de eficiência</li>
+                        
+                        <li class="lang-en">Business dashboards & reporting</li>
+                        <li class="lang-pt" style="display: none;">Dashboards empresariais & relatórios</li>
+                    </ul>
+                    
+                    <a href="https://rodrigo-ramone.github.io/" class="btn lang-en">Discuss My Needs</a>
+                    <a href="https://rodrigo-ramone.github.io/" class="btn lang-pt" style="display: none;">Discutir Minhas Necessidades</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+<!-- How It Works Section -->
+<section id="process" class="process-section">
+    <div class="container">
+        <h2 class="section-title lang-en">Types of Services</h2>
+        <h2 class="section-title lang-pt" style="display: none;">Tipos de Serviços</h2>
+
+        <p class="section-subtitle lang-en">Several types of service packages to meet your priorities and budget.</p>
+        <p class="section-subtitle lang-pt" style="display: none;">Vários tipos de pacotes para atender às suas prioridades e seu bolso.</p>
+
+        <div class="process-steps">
+
+            <!-- PACKAGE 1 ----------------------------------------- -->
+            <div class="process-step">
+                <div class="step-number">1</div>
+
+                <h4 class="lang-en">Consultancy services - One-time only</h4>
+                <h4 class="lang-pt" style="display:none;">Serviço de consultoria - Oferta única</h4>
+
+                <h3 class="price lang-en">$1500</h3>
+                <h3 class="price lang-pt" style="display:none;">R$800</h3>
+
+                <p class="lang-en">
+                    Includes: content gap, competitor, sales or any other requested analysis with specific data and goals.
+                    30 days data analysis service with insights and recommendations. 2-hour Zoom session.
+                </p>
+                <p class="lang-pt" style="display:none;">
+                    Inclui: análise de conteúdo, competidores, vendas ou outra solicitada;
+                    30 dias de serviço de análise de dados; sessão Zoom de 2 horas.
+                </p>
+
+                <!-- PAYMENT BUTTONS -->
+                <div class="payment-buttons">
+                    <!-- EN: Stripe -->
+                    <a class="pay-btn usd lang-en" href="https://buy.stripe.com/28EfZj0I88Pk1dRcH9g7e00" target="_blank">
+                        Pay in USD (Stripe)
+                    </a>
+
+                    <!-- PT: Mercado Pago -->
+                    <a class="pay-btn brl lang-pt" style="display:none;" href="https://mpago.li/1mQddEm" target="_blank">
+                        Pagar em Reais (R$)
+                    </a>
+                </div>
+            </div> <!-- END PACKAGE 1 -->
+
+            <!-- PACKAGE 2 ----------------------------------------- -->
+            <div class="process-step">
+                <div class="step-number">2</div>
+
+                <h4 class="lang-en">Monthly package - Basic</h4>
+                <h4 class="lang-pt" style="display:none;">Pacote Mensal - Básico</h4>
+
+                <h3 class="price lang-en">$350</h3>
+                <h3 class="price lang-pt" style="display:none;">R$200</h3>
+
+                <p class="lang-en">Weekly competitor, sales or any requested analysis. Biweekly insights. Simple monthly report.</p>
+                <p class="lang-pt" style="display:none;">Análise semanal, insights quinzenais, relatório mensal simples.</p>
+
+                <!-- PAYMENT BUTTONS -->
+                <div class="payment-buttons">
+                    <a class="pay-btn usd lang-en" href="https://buy.stripe.com/5kQdRb62sd5A1dR7mPg7e01" target="_blank">
+                        Pay in USD (Stripe)
+                    </a>
+
+                    <a class="pay-btn brl lang-pt" style="display:none;" href="https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=ad2a3f094a774445ad8ae2f03c682ca6" target="_blank">
+                        Pagar em Reais (R$)
+                    </a>
+                </div>
+            </div> <!-- END PACKAGE 2 -->
+
+            <!-- PACKAGE 3 ----------------------------------------- -->
+            <div class="process-step">
+                <div class="step-number">3</div>
+
+                <h4 class="lang-en">Monthly package - Professional</h4>
+                <h4 class="lang-pt" style="display:none;">Pacote Mensal - Profissional</h4>
+
+                <h3 class="price lang-en">$500</h3>
+                <h3 class="price lang-pt" style="display:none;">R$350</h3>
+
+                <p class="lang-en">Weekly analysis, weekly insights, monthly Zoom, detailed report, dashboard access.</p>
+                <p class="lang-pt" style="display:none;">Análise semanal, insights semanais, chamada mensal, relatório detalhado, dashboard.</p>
+
+                <!-- PAYMENT BUTTONS -->
+                <div class="payment-buttons">
+                    <a class="pay-btn usd lang-en" href="https://buy.stripe.com/4gMcN74Yo7Lg4q3cH9g7e02" target="_blank">
+                        Pay in USD (Stripe)
+                    </a>
+
+                    <a class="pay-btn brl lang-pt" style="display:none;" href="https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=4aaa72775388485798fd4941b84fafa7" target="_blank">
+                        Pagar em Reais (R$)
+                    </a>
+                </div>
+            </div> <!-- END PACKAGE 3 -->
+
+            <!-- PACKAGE 4 ----------------------------------------- -->
+            <div class="process-step">
+                <div class="step-number">4</div>
+
+                <h4 class="lang-en">Monthly package - Premium</h4>
+                <h4 class="lang-pt" style="display:none;">Pacote Mensal - Premium</h4>
+
+                <h3 class="price lang-en">$1000</h3>
+                <h3 class="price lang-pt" style="display:none;">R$500</h3>
+
+                <p class="lang-en">Everything from Pro + one extra business analysis + priority support + 2 monthly calls.</p>
+                <p class="lang-pt" style="display:none;">Tudo do Pro + análise adicional + suporte prioritário + 2 chamadas/mês.</p>
+
+                <!-- PAYMENT BUTTONS -->
+                <div class="payment-buttons">
+                    <a class="pay-btn usd lang-en" href="https://buy.stripe.com/bJe7sN76w4z44q30Yrg7e03" target="_blank">
+                        Pay in USD (Stripe)
+                    </a>
+
+                    <a class="pay-btn brl lang-pt" style="display:none;" href="https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=0dc0381d80ba4089a67b6edc7975424d" target="_blank">
+                        Pagar em Reais (R$)
+                    </a>
+                </div>
+            </div> <!-- END PACKAGE 4 -->
+
+        </div> <!-- END process-steps -->
+    </div> <!-- END container -->
+</section>
+
+
+<!-- CONTACT SECTION (Calendly) -->
+<section id="contact" class="contact-section" style="padding: 80px 0; background: #f8f9fa;">
+    <div class="container">
+        <h2 class="section-title lang-en">Book Your Free 30-Minute Consultation</h2>
+        <h2 class="section-title lang-pt" style="display: none;">Agende Sua Consultoria Gratuita de 30 Minutos</h2>
+
+        <p class="lang-en" style="text-align:center; max-width:700px; margin:20px auto; color:#555;">
+            Choose a time that works for you. You'll receive the meeting link and confirmation instantly.
+        </p>
+        <p class="lang-pt" style="display:none; text-align:center; max-width:700px; margin:20px auto; color:#555;">
+            Escolha um horário que funcione para você. Você receberá o link da reunião e a confirmação imediatamente.
+        </p>
+
+        <div style="
+            max-width: 900px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        ">
+            <!-- Calendly inline widget begin -->
+            <div
+                class="calendly-inline-widget"
+                data-url="https://calendly.com/rod19-silva/30min"
+                style="min-width: 320px; height: 700px;">
+            </div>
+            <!-- Calendly inline widget end -->
+        </div>
+    </div>
+</section>
+
+<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+
+<!-- SIMPLE 4-STEP PROCESS (texto RESTAURADO) -->
+<section id="process-steps-2" class="process-section">
+    <div class="container">
+        <h2 class="section-title lang-en">Simple 4-Step Process</h2>
+        <h2 class="section-title lang-pt" style="display: none;">Processo Simples de 4 Passos</h2>
+
+        <p class="section-subtitle lang-en">From problem to solution in weeks, not months. I deliver actionable insights, not just reports.</p>
+        <p class="section-subtitle lang-pt" style="display: none;">Do problema à solução em semanas, não meses. Eu entrego insights acionáveis, não apenas relatórios.</p>
+
+        <div class="process-steps">
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <h4 class="lang-en">Discovery & Analysis</h4>
+                <h4 class="lang-pt" style="display: none;">Descoberta & Análise</h4>
+                <p class="lang-en">I analyze your business challenges and data to identify key opportunities.</p>
+                <p class="lang-pt" style="display: none;">Eu analiso seus desafios de negócios e dados para identificar oportunidades-chave.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <h4 class="lang-en">Solution Design</h4>
+                <h4 class="lang-pt" style="display: none;">Design da Solução</h4>
+                <p class="lang-en">I create a customized data strategy tailored to your specific needs (which naturally varies across time).</p>
+                <p class="lang-pt" style="display: none;">Eu crio uma estratégia de dados personalizada adaptada às suas necessidades específicas (o que naturalmente varia ao longo do tempo).</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <h4 class="lang-en">Systems Thinking Approach</h4>
+                <h4 class="lang-pt" style="display: none;">Abordagem de pensamento sistêmico</h4>
+                <p class="lang-en">After initial analysis and results, I give a zoom out in the lens to have a broader view of the system that fuels your business. By doing so new relationships are found, giving you several advantages against your competitors.</p>
+                <p class="lang-pt" style="display: none;">Depois das análises e resultados iniciais, eu dou um zoom out nas lentes para ter uma visão mais ampla do sistema que alimenta o seu negócio. Ao fazer isso novas relações são descobertas, te dando várias vantagens em relação aos seus competidores.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">4</div>
+                <h4 class="lang-en">Results & Optimization</h4>
+                <h4 class="lang-pt" style="display: none;">Resultados & Otimização</h4>
+                <p class="lang-en">I monitor results and optimize for continuous improvement and maximum profit and growth.</p>
+                <p class="lang-pt" style="display: none;">Eu monitoro resultados e otimizo para melhoria contínua, lucro e crescimento máximo.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- FOOTER style fix to put Data Solutions below Get in Touch -->
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-logo">Data<span>Solutions</span></div>
+
+            <div class="social-links">
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-medium"></i></a>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p class="lang-en">&copy; 2023 Data Solutions. All rights reserved.</p>
+            <p class="lang-pt" style="display: none;">&copy; 2023 Data Solutions. Todos os direitos reservados.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- LANGUAGE TOGGLE & minor behaviors (RESTORED & ADJUSTED) -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const enBtn = document.getElementById('en-btn');
+    const ptBtn = document.getElementById('pt-btn');
+
+    // Show English content by default
+    function showLanguage(lang) {
+        // Hide all language-specific elements
+        const allElements = document.querySelectorAll('.lang-en, .lang-pt');
+        allElements.forEach(el => el.style.display = 'none');
+
+        // Show elements for selected language
+        const langElements = document.querySelectorAll('.lang-' + lang);
+        langElements.forEach(el => {
+            // if element is an option inside select, don't change display for select itself
+            el.style.display = (el.tagName.toLowerCase() === 'option') ? '' : 'block';
+        });
+
+        // Handle select options specifically (if select exists)
+        const serviceSelect = document.getElementById('service');
+        if (serviceSelect) {
+            const options = serviceSelect.querySelectorAll('option');
+            options.forEach(option => {
+                if (option.classList.contains('lang-' + lang)) {
+                    option.style.display = '';
+                } else {
+                    option.style.display = 'none';
+                }
+            });
+            // pick first visible option if none selected
+            const visibleOptions = Array.from(options).filter(opt => opt.style.display !== 'none' && opt.value !== '');
+            if (visibleOptions.length > 0) {
+                serviceSelect.value = visibleOptions[0].value;
+            }
+        }
+    }
+
+    function setActiveButton(activeBtn, inactiveBtn) {
+        activeBtn.classList.add('active');
+        inactiveBtn.classList.remove('active');
+    }
+
+    // initial
+    showLanguage('en');
+    setActiveButton(enBtn, ptBtn);
+
+    enBtn.addEventListener('click', function() {
+        showLanguage('en');
+        setActiveButton(enBtn, ptBtn);
+    });
+
+    ptBtn.addEventListener('click', function() {
+        showLanguage('pt');
+        setActiveButton(ptBtn, enBtn);
+    });
+
+    // Accessibility: keyboard toggles
+    enBtn.addEventListener('keyup', (e) => { if(e.key === 'Enter') enBtn.click(); });
+    ptBtn.addEventListener('keyup', (e) => { if(e.key === 'Enter') ptBtn.click(); });
+});
+</script>
+
+</body>
+</html>
 
